@@ -1,0 +1,15 @@
+#Internal package file, do not edit.
+#Mon Jun 04 15:54:34 CST 2018
+1.base=/Users/wangheng/Downloads/H264Demo1/app/build/intermediates/transforms/dexMerger/debug/0
+2.path=stream_chn0.h264
+0.baseType=DIRECTORY
+2.base=/Users/wangheng/Downloads/H264Demo1/app/build/intermediates/assets/debug
+2.set=ASSET
+1.baseType=DIRECTORY
+count=3
+1.set=DEX
+0.path=1280_720.h264
+0.set=ASSET
+0.base=/Users/wangheng/Downloads/H264Demo1/app/build/intermediates/assets/debug
+2.baseType=DIRECTORY
+1.path=classes.dex

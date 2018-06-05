@@ -1,0 +1,38 @@
+
+//摄像机通过广播对外发送携带楼号，单元号的心跳以及音视频包
+#define 				IVPT_BROADCAST_SERVER_PORT 			6801
+#define 				IVPT_BROADCAST_IPC_GET_PORT 		6802
+#define			 		MAX_BROADCAST_DATA_LEN    			300*1024 //	最大单帧300K
+#define			 		MAX_BROADCAST_SINGLE_DATA_LEN    	32000 //	最大单帧32K //通常默认的底层数据缓冲可能是64K
+#define					MAX_BROADCAST_AUDIO_LEN				12800
+typedef enum
+{
+	IV_IPC_DATA_TYPE_HEART	=0,//心跳
+	IV_IPC_DATA_TYPE_VIDEO	=1,//视频
+	IV_IPC_DATA_TYPE_AUDIO	=2,//音频
+	IV_IPC_DATA_TYPE_CMD	=3,//命令
+	IV_IPC_DATA_TYPE_PIC	=4,//图片 //人脸大小图
+}IV_IPC_DATA_TYPE;
+typedef enum
+{
+	IV_IPC_DATA_CMD_TYPE_NULL=0,//空 没有定义
+	IV_IPC_DATA_CMD_TYPE_SET_DOOR_STATE=1,//设置门状态 开关
+}IV_IPC_DATA_CMD_TYPE;
+
+typedef struct{
+	int  nStructSize;//本结构体大小
+	char strIP[32];//摄像机IP
+	char strSN[32];//唯一序列号
+	int  nPort;//端口 用来接收音视频或者命令
+	char strLouHao[4];//楼号
+	char strDanyuan[4];//单元号
+	char strFangjian[8];//楼层2字节+房间2字节
+	///////////////////////
+	int  nWidth;//图像或者视频的宽高，仅仅对视频以及图片类型有效，其他类型可以忽略
+	int  nHeight;
+	////////////////////////
+	int  nDataType;//数据类型 心跳 命令 音频 视频
+	int  nDataSubType;//子类型 对于命令而言，区分某个具体命令，对于音频而言，区分音频类型 对于图片而言，可能是jpg或者bmp
+	int  nDataLen;//数据实际长度，就是这个头后面紧跟的实际数据大小
+	int  nDataBianhao;//数据编号，每个广播命令都会发送2次，对于相同的数据，这个编号时相同的。定义一个全局变量，不停累加即可。客户端如果受到相同，忽略
+}IV_BROADCAST_IPC_HEADER;
