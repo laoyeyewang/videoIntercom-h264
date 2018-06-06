@@ -8,6 +8,10 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.MediaCodec;
 import android.media.MediaFormat;
 import android.os.Bundle;
@@ -25,6 +29,9 @@ import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
+	//tag 标记
+	protected static final String TAG = MainActivity.class.getSimpleName();
+
 
 	private String h264Path = "/mnt/sdcard/720pq.h264";
 	private File h264File = new File(h264Path);
@@ -42,34 +49,29 @@ public class MainActivity extends Activity {
 	private final static String MIME_TYPE = "video/avc"; // H.264 Advanced Video
 	private final static int VIDEO_WIDTH = 1280;
 	private final static int VIDEO_HEIGHT = 720;
-	private final static int TIME_INTERNAL = 150;
-	private final static int HEAD_OFFSET = 512;
+	private final static int TIME_INTERNAL = 2;
+	private final static int HEAD_OFFSET = 0;
+
+	private MyReceiver myReceiver;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		//启动服务
+		Intent intent = new Intent(MainActivity.this,UdpReceiver.class);
+		startService(intent);
+		//注册广播接收器
+		myReceiver = new MyReceiver();
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("com.example.weiyuzk.UdpReceiver");
+		registerReceiver(myReceiver, filter);
+
+
+
 		mSurfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
-		mReadButton = (Button) findViewById(R.id.btn_readfile);
-		mReadButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-//				if (h264File.exists()) {
-					if (!isInit) {
-						initDecoder();
-						isInit = true;
-					}
-
-					readFileThread = new Thread(readFile);
-					readFileThread.start();
-//				} else {
-//					Toast.makeText(getApplicationContext(),
-//							"H264 file not found", Toast.LENGTH_SHORT).show();
-//				}
-			}
-		});
 	}
 
 	@Override
@@ -87,6 +89,8 @@ public class MainActivity extends Activity {
 	protected void onDestroy() {
 		super.onDestroy();
 		readFileThread.interrupt();
+		//结束服务
+		stopService(new Intent(MainActivity.this, UdpReceiver.class));
 	}
 
 	public void initDecoder() {
@@ -102,14 +106,11 @@ public class MainActivity extends Activity {
 	int mCount = 0;
 
 	public boolean onFrame(byte[] buf, int offset, int length) {
-		Log.e("Media", "onFrame start");
-		Log.e("Media", "onFrame Thread:" + Thread.currentThread().getId());
+
 		// Get input buffer index
 		ByteBuffer[] inputBuffers = mCodec.getInputBuffers();
 		int inputBufferIndex = mCodec.dequeueInputBuffer(100);
-
-		Log.e("Media", "onFrame index:" + inputBufferIndex);
-		if (inputBufferIndex >= 0) {
+//		if (inputBufferIndex >= 0) {
 			ByteBuffer inputBuffer = inputBuffers[inputBufferIndex];
 			inputBuffer.clear();
 			inputBuffer.put(buf, offset, length);
@@ -117,16 +118,16 @@ public class MainActivity extends Activity {
 			mCodec.queueInputBuffer(inputBufferIndex, 0, length, mCount
 					* TIME_INTERNAL, 0);
 			mCount++;
-		} else {
-			return false;
-		}
+//		} else {
+//			return false;
+//		}
 
 		// Get output buffer index
 		MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
 		int outputBufferIndex = mCodec.dequeueOutputBuffer(bufferInfo, 100);
 		while (outputBufferIndex >= 0) {
 			mCodec.releaseOutputBuffer(outputBufferIndex, true);
-			outputBufferIndex = mCodec.dequeueOutputBuffer(bufferInfo, 0);
+			outputBufferIndex = mCodec.dequeueOutputBuffer(bufferInfo, 100);
 		}
 		Log.e("Media", "onFrame end");
 		return true;
@@ -171,87 +172,45 @@ public class MainActivity extends Activity {
 		return false;
 	}
 
-	Runnable readFile = new Runnable() {
 
-		@Override
-		public void run() {
-			int h264Read = 0;
-			int frameOffset = 0;
-			byte[] buffer = new byte[100000];
-			byte[] framebuffer = new byte[200000];
-			boolean readFlag = true;
-			try {
-//				fs = new FileInputStream(h264File);
-				is = new BufferedInputStream(getResources().getAssets().open("stream_chn0.h264"));
-				//is = new BufferedInputStream(getResources().getAssets().open("1280_720.h264"));
-			} catch (java.io.IOException e) {
-				e.printStackTrace();
-			}
-			while (!Thread.interrupted() && readFlag) {
+	public class MyReceiver extends BroadcastReceiver {
+			public void onReceive(Context context, Intent intent){
 				try {
-					int length = is.available();
-					if (length > 0) {
-						// Read file and fill buffer
-						int count = is.read(buffer);
-						Log.i("count", "" + count);
-						h264Read += count;
-						Log.d("Read", "count:" + count + " h264Read:"
-								+ h264Read);
-						// Fill frameBuffer
-						if (frameOffset + count < 200000) {
-							System.arraycopy(buffer, 0, framebuffer,
-									frameOffset, count);
-							frameOffset += count;
-						} else {
-							frameOffset = 0;
-							System.arraycopy(buffer, 0, framebuffer,
-									frameOffset, count);
-							frameOffset += count;
-						}
 
-						// Find H264 head
-						int offset = findHead(framebuffer, frameOffset);
-						Log.i("find head", " Head:" + offset);
-						while (offset > 0) {
-							if (checkHead(framebuffer, 0)) {
-								// Fill decoder
-								boolean flag = onFrame(framebuffer, 0, offset);
-								if (flag) {
-									byte[] temp = framebuffer;
-									framebuffer = new byte[200000];
-									System.arraycopy(temp, offset, framebuffer,
-											0, frameOffset - offset);
-									frameOffset -= offset;
-									Log.e("Check", "is Head:" + offset);
-									// Continue finding head
-									offset = findHead(framebuffer, frameOffset);
-								}
-							} else {
-
-								offset = 0;
-							}
-
-						}
-						Log.d("loop", "end loop");
-					} else {
-						h264Read = 0;
-						frameOffset = 0;
-						readFlag = false;
-						// Start a new thread
-						readFileThread = new Thread(readFile);
-						readFileThread.start();
+                    if (!isInit) {
+                        initDecoder();
+                        isInit = true;
+                    }
+					Bundle bundle = intent.getExtras();
+					byte[] count = bundle.getByteArray("count");
+					Log.i(TAG, "onReceive: " + count.length);
+					System.out.print(count.length);
+					byte[] dataB = new byte[count.length-112];
+					System.arraycopy(count,112,dataB,0,count.length-112);
+					byte[] dataV = new byte[4];
+					System.arraycopy(count,96,dataV,0,4);
+					Log.i(TAG, "onReceive: "+ByteArrayToInt(dataV));
+					if (ByteArrayToInt(dataV) == 1){
+						int datacount = dataB.length;
+						Log.i(TAG, "onReceive: " + datacount);
+						System.out.print(datacount);
+						onFrame(dataB, 0, datacount);
+						Log.i(TAG, "onReceive: "+count);
 					}
 
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				try {
-					Thread.sleep(TIME_INTERNAL);
-				} catch (InterruptedException e) {
-
+				}catch (Exception e){
+					Log.i(TAG, "onReceive: "+e);
 				}
 			}
+	}
+
+	public int ByteArrayToInt(byte[] bArr) {
+		if(bArr.length!=4){
+			return -1;
 		}
-	};
+		return (int) ((((bArr[3] & 0xff) << 24)
+				| ((bArr[2] & 0xff) << 16)
+				| ((bArr[1] & 0xff) << 8)
+				| ((bArr[0] & 0xff) << 0)));
+	}
 }

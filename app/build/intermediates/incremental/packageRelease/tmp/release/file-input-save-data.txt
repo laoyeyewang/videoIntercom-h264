@@ -1,0 +1,19 @@
+#Internal package file, do not edit.
+#Wed Jun 06 10:01:47 CST 2018
+1.base=/Users/wangheng/Documents/H264Demo1/app/build/intermediates/assets/release
+2.path=stream_chn0.h264
+0.baseType=DIRECTORY
+3.baseType=DIRECTORY
+2.base=/Users/wangheng/Documents/H264Demo1/app/build/intermediates/assets/release
+3.set=DEX
+2.set=ASSET
+1.baseType=DIRECTORY
+3.path=classes.dex
+count=4
+1.set=ASSET
+0.path=1280_720.h264
+3.base=/Users/wangheng/Documents/H264Demo1/app/build/intermediates/transforms/dexMerger/release/0
+0.set=ASSET
+0.base=/Users/wangheng/Documents/H264Demo1/app/build/intermediates/assets/release
+2.baseType=DIRECTORY
+1.path=新建文本文档.txt
