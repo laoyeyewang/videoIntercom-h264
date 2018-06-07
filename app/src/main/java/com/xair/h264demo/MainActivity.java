@@ -1,20 +1,32 @@
 package com.xair.h264demo;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.util.concurrent.Executors;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioFormat;
+import android.media.AudioManager;
+import android.media.AudioRecord;
+import android.media.AudioTrack;
 import android.media.MediaCodec;
 import android.media.MediaFormat;
+import android.media.MediaRecorder;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
@@ -23,9 +35,10 @@ import android.widget.Toast;
 
 
 
-
+//udp
 //6801
-
+//tcp
+//8101 192.168.2.140
 
 
 public class MainActivity extends Activity {
@@ -44,6 +57,7 @@ public class MainActivity extends Activity {
 
 	Thread readFileThread;
 	boolean isInit = false;
+    //AudioPlayer audioPlayer;
 
 	// Video Constants
 	private final static String MIME_TYPE = "video/avc"; // H.264 Advanced Video
@@ -53,6 +67,17 @@ public class MainActivity extends Activity {
 	private final static int HEAD_OFFSET = 0;
 
 	private MyReceiver myReceiver;
+
+	AudioTrack player=null;
+	int bufferSize=0;//最小缓冲区大小
+    AudioRecord audioRecord=null;
+	//int sampleRateInHz = 11025;//采样率
+	int sampleRateInHz = 8000;
+	int channelConfig = AudioFormat.CHANNEL_IN_MONO; //单声道
+	int audioFormat = AudioFormat.ENCODING_PCM_16BIT; //量化位数
+
+    byte[] receveAudio = new byte[1312];
+    int audioindex = 0;
 
 
 	@Override
@@ -69,9 +94,14 @@ public class MainActivity extends Activity {
 		filter.addAction("com.example.weiyuzk.UdpReceiver");
 		registerReceiver(myReceiver, filter);
 
-
-
 		mSurfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
+
+//		readFileThread = new Thread(readFile);
+//		readFileThread.start();
+		// 初始化线程池
+		TCPSend.mThreadPool = Executors.newCachedThreadPool();
+		TCPSend.connectThread();
+
 	}
 
 	@Override
@@ -93,7 +123,8 @@ public class MainActivity extends Activity {
 		stopService(new Intent(MainActivity.this, UdpReceiver.class));
 	}
 
-	public void initDecoder() {
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public void initDecoder() {
 
 		mCodec = MediaCodec.createDecoderByType(MIME_TYPE);
 		MediaFormat mediaFormat = MediaFormat.createVideoFormat(MIME_TYPE,
@@ -105,7 +136,8 @@ public class MainActivity extends Activity {
 
 	int mCount = 0;
 
-	public boolean onFrame(byte[] buf, int offset, int length) {
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public boolean onFrame(byte[] buf, int offset, int length) {
 
 		// Get input buffer index
 		ByteBuffer[] inputBuffers = mCodec.getInputBuffers();
@@ -185,24 +217,43 @@ public class MainActivity extends Activity {
 					byte[] count = bundle.getByteArray("count");
 					Log.i(TAG, "onReceive: " + count.length);
 					System.out.print(count.length);
-					byte[] dataB = new byte[count.length-112];
-					System.arraycopy(count,112,dataB,0,count.length-112);
 					byte[] dataV = new byte[4];
 					System.arraycopy(count,96,dataV,0,4);
 					Log.i(TAG, "onReceive: "+ByteArrayToInt(dataV));
 					if (ByteArrayToInt(dataV) == 1){
+                        byte[] dataB = new byte[count.length-112];
+                        System.arraycopy(count,112,dataB,0,count.length-112);
 						int datacount = dataB.length;
 						Log.i(TAG, "onReceive: " + datacount);
 						System.out.print(datacount);
 						onFrame(dataB, 0, datacount);
 						Log.i(TAG, "onReceive: "+count);
-					}
+					}else if (ByteArrayToInt(dataV) == 2) {
+                       byte[] dataA = new byte[count.length-112];
+                        System.arraycopy(count,112,dataA,0,count.length-112);
+                        int dataleng = dataA.length;
+//						readFileThread = new Thread(readFile);
+//						readFileThread.start();
+//						System.arraycopy(dataA,0,receveAudio,dataleng*audioindex,dataleng);
+//						audioindex++;
+//                        if (audioindex == 4){
+//							playVudio(receveAudio);
+//							//receveAudio = new byte[1312];
+//							audioindex = 0;
+//						}
+
+                    }
 
 				}catch (Exception e){
 					Log.i(TAG, "onReceive: "+e);
 				}
 			}
 	}
+
+
+	/**
+	 * byte转int
+	 */
 
 	public int ByteArrayToInt(byte[] bArr) {
 		if(bArr.length!=4){
@@ -213,4 +264,93 @@ public class MainActivity extends Activity {
 				| ((bArr[1] & 0xff) << 8)
 				| ((bArr[0] & 0xff) << 0)));
 	}
+
+/**
+ *
+ * 声音的播放
+ */
+	Runnable readFile = new Runnable() {
+		@Override
+		public void run() {
+			DataInputStream dis=null;
+			try {
+				dis = new DataInputStream(new BufferedInputStream(getResources().getAssets().open("welcome.wav")));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			//最小缓存区
+			int bufferSizeInBytes= AudioTrack.getMinBufferSize(sampleRateInHz, AudioFormat.CHANNEL_OUT_MONO,AudioFormat.ENCODING_PCM_16BIT);
+			//创建AudioTrack对象   依次传入 :流类型、采样率（与采集的要一致）、音频通道（采集是IN 播放时OUT）、量化位数、最小缓冲区、模式
+			player=new AudioTrack(AudioManager.STREAM_MUSIC,sampleRateInHz,AudioFormat.CHANNEL_OUT_MONO,AudioFormat.ENCODING_PCM_16BIT, bufferSizeInBytes, AudioTrack.MODE_STREAM);
+			byte[] data =new byte [bufferSizeInBytes];
+			//byte[] data =new byte [320];
+			player.play();//开始播放
+			while(true)
+			{
+				int i=0;
+				try {
+					while(dis.available()>0&&i<data.length)
+					{
+						data[i]=dis.readByte();
+						i++;
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				short[] pcm = new short[1312];
+				com.example.test.G711Code.G711aDecoder(pcm,data,1312);
+				//player.write(data,0,data.length);
+				player.write(pcm,0,pcm.length);
+				if(i!=bufferSizeInBytes) //表示读取完了
+				{
+					player.stop();//停止播放
+					player.release();//释放资源
+					break;
+				}
+			}
+		}
+	};
+	public void playVudio(byte[] b){
+		//最小缓存区
+		int bufferSizeInBytes= AudioTrack.getMinBufferSize(sampleRateInHz, AudioFormat.CHANNEL_OUT_MONO,AudioFormat.ENCODING_PCM_16BIT);
+		//创建AudioTrack对象   依次传入 :流类型、采样率（与采集的要一致）、音频通道（采集是IN 播放时OUT）、量化位数、最小缓冲区、模式
+		player=new AudioTrack(AudioManager.STREAM_MUSIC,sampleRateInHz,AudioFormat.CHANNEL_OUT_MONO,AudioFormat.ENCODING_PCM_16BIT, bufferSizeInBytes, AudioTrack.MODE_STREAM);
+		byte[] data =new byte [bufferSizeInBytes];
+		//byte[] data =new byte [320];
+		player.play();//开始播放
+			System.arraycopy(b,0,data,0,b.length);
+			short[] pcm = new short[1312];
+			com.example.test.G711Code.G711aDecoder(pcm,data,1312);
+			//player.write(data,0,data.length);
+			player.write(pcm,0,pcm.length);
+			player.stop();
+//			if(i!=bufferSizeInBytes) //表示读取完了
+//			{
+//				player.stop();//停止播放
+//				player.release();//释放资源
+//				break;
+//			}
+//		}
+	}
+    /**
+     *
+     * 录音
+     */
+	public void startAudio() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                bufferSize = AudioRecord.getMinBufferSize(sampleRateInHz,channelConfig, audioFormat);//计算最小缓冲区
+                audioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC,sampleRateInHz,channelConfig, audioFormat, bufferSize);//创建AudioRecorder对象
+                byte[] buffer = new byte[bufferSize];
+                audioRecord.startRecording();//开始录音
+                int bufferReadResult = audioRecord.read(buffer,0,bufferSize);
+                Log.i(TAG, "run: "+bufferReadResult);
+            }
+        }).start();
+    }
 }
+

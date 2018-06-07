@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jun 06 10:01:47 CST 2018
+#Wed Jun 06 10:07:53 CST 2018
 1.base=/Users/wangheng/Documents/H264Demo1/app/build/intermediates/assets/release
 2.path=stream_chn0.h264
 0.baseType=DIRECTORY
