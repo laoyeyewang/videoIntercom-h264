@@ -10,7 +10,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b0526e-4b17-45a5-b41f-1590b9bb6683" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/assets/debug/welcome.wav" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/test/G711Code.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/MainActivity$1.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/MainActivity$2.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/TCPSend$1.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/TCPSend$2.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/TCPSend$3.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/TCPSend.class" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/file-input-save-data.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/example/test/G711Code.dex" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/MainActivity$1.dex" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/MainActivity$2.dex" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/TCPSend$1.dex" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/TCPSend$2.dex" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/TCPSend$3.dex" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/TCPSend.dex" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/release/app-release.apk" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/release/output.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/assets/welcome.wav" />
       <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/AudioCapturer.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/G711Code.java" />
       <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/TCPSend.java" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4.1/fileHashes/fileHashes.lock" />
@@ -2097,8 +2118,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="272" />
-    <option name="y" value="23" />
+    <option name="x" value="325" />
+    <option name="y" value="232" />
     <option name="width" value="1464" />
     <option name="height" value="821" />
   </component>
@@ -2194,7 +2215,7 @@
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1528333315258" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1528333369861" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="device.picker.selection" value="33ca2c18" />
@@ -2458,7 +2479,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="272" y="23" width="1464" height="821" extended-state="0" />
+    <frame x="325" y="232" width="1464" height="821" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32859176" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
