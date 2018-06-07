@@ -61,6 +61,7 @@ public class TCPSend {
                         System.arraycopy(nCMD,0,headerB,0,4);
                         System.arraycopy(b,0,headerB,4,14);
                         sendMsgThread(headerB);
+                        AudioCapturer.startCapture();
                         //receviedMsgThread();
                     } else {
                         Log.i(TAG, "run: 连接失败");
@@ -74,7 +75,7 @@ public class TCPSend {
     /*
      * 发送消息
      * */
-    private static void sendMsgThread(final byte[] msg) {
+    public static void sendMsgThread(final byte[] msg) {
         // 利用线程池直接开启一个线程 & 执行该线程
         mThreadPool.execute(new Runnable() {
             @Override
@@ -137,12 +138,12 @@ public class TCPSend {
         });
     }
 
-    public static byte[] intToByteArray(int a) {
-        return new byte[] {
-                (byte) ((a >> 24) & 0xFF),
-                (byte) ((a >> 16) & 0xFF),
-                (byte) ((a >> 8) & 0xFF),
-                (byte) (a & 0xFF)
-        };
+    public static byte[] intToByteArray(int value) {
+        byte[] src = new byte[4];
+        src[3] =  (byte) ((value>>24) & 0xFF);
+        src[2] =  (byte) ((value>>16) & 0xFF);
+        src[1] =  (byte) ((value>>8) & 0xFF);
+        src[0] =  (byte) (value & 0xFF);
+        return src;
     }
 }

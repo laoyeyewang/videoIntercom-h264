@@ -25,6 +25,10 @@ uses-permission#android.permission.INTERNET
 ADDED from /Users/wangheng/Documents/H264Demo1/app/src/main/AndroidManifest.xml:7:5-66
 	android:name
 		ADDED from /Users/wangheng/Documents/H264Demo1/app/src/main/AndroidManifest.xml:7:22-64
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /Users/wangheng/Documents/H264Demo1/app/src/main/AndroidManifest.xml:8:5-71
+	android:name
+		ADDED from /Users/wangheng/Documents/H264Demo1/app/src/main/AndroidManifest.xml:8:22-68
 uses-sdk
 ADDED from /Users/wangheng/Documents/H264Demo1/app/src/main/AndroidManifest.xml:12:5-14:41
 INJECTED from /Users/wangheng/Documents/H264Demo1/app/src/main/AndroidManifest.xml:12:5-14:41
@@ -77,11 +81,3 @@ category#android.intent.category.LAUNCHER
 ADDED from /Users/wangheng/Documents/H264Demo1/app/src/main/AndroidManifest.xml:35:17-77
 	android:name
 		ADDED from /Users/wangheng/Documents/H264Demo1/app/src/main/AndroidManifest.xml:35:27-74
-service#com.xair.h264demo.UdpReceiver
-ADDED from /Users/wangheng/Documents/H264Demo1/app/src/main/AndroidManifest.xml:38:9-40:38
-	android:enabled
-		ADDED from /Users/wangheng/Documents/H264Demo1/app/src/main/AndroidManifest.xml:39:13-35
-	android:exported
-		ADDED from /Users/wangheng/Documents/H264Demo1/app/src/main/AndroidManifest.xml:40:13-36
-	android:name
-		ADDED from /Users/wangheng/Documents/H264Demo1/app/src/main/AndroidManifest.xml:38:18-45

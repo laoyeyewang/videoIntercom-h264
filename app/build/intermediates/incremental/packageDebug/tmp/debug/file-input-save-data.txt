@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jun 06 18:14:33 CST 2018
+#Thu Jun 07 19:45:09 CST 2018
 2.base=/Users/wangheng/Documents/H264Demo1/app/build/intermediates/assets/debug
 0.path=classes.dex
 2.baseType=DIRECTORY

@@ -13,29 +13,29 @@ public class AudioCapturer {
     private static final int DEFAULT_SAMPLE_RATE = 8000;
     private static final int DEFAULT_CHANNEL_CONFIG = AudioFormat.CHANNEL_IN_MONO;
     private static final int DEFAULT_AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT;
-    private AudioRecord mAudioRecord;
-    private int mMinBufferSize = 0;
+    private static AudioRecord mAudioRecord;
+    private static int mMinBufferSize = 0;
 
-    private Thread mCaptureThread;
-    private boolean mIsCaptureStarted = false;
-    private volatile boolean mIsLoopExit = false;
-    private OnAudioFrameCapturedListener mAudioFrameCapturedListener;
+    private static Thread mCaptureThread;
+    private static boolean mIsCaptureStarted = false;
+    private static volatile boolean mIsLoopExit = false;
+    private static OnAudioFrameCapturedListener mAudioFrameCapturedListener;
 
 
     public interface OnAudioFrameCapturedListener {
         public void onAudioFrameCaptured(short[] audioData);
     }
-    public boolean isCaptureStarted() {
+    public static boolean isCaptureStarted() {
         return mIsCaptureStarted;
     }
     public void setOnAudioFrameCapturedListener(OnAudioFrameCapturedListener listener) {
         mAudioFrameCapturedListener = listener;
     }
-    public boolean startCapture() {
+    public static boolean startCapture() {
         return startCapture(DEFAULT_SOURCE, DEFAULT_SAMPLE_RATE, DEFAULT_CHANNEL_CONFIG,
                 DEFAULT_AUDIO_FORMAT);
     }
-    public boolean startCapture(int audioSource, int sampleRateInHz, int channelConfig, int audioFormat) {
+    public static boolean startCapture(int audioSource, int sampleRateInHz, int channelConfig, int audioFormat) {
         if (mIsCaptureStarted) {
             Log.e(TAG, "Capture already started !");
             return false;
@@ -84,7 +84,7 @@ public class AudioCapturer {
         mAudioFrameCapturedListener = null;
         Log.d(TAG, "Stop audio capture success !");
     }
-    private class AudioCaptureRunnable implements Runnable {
+    private static class AudioCaptureRunnable implements Runnable {
 
         @Override
         public void run() {
@@ -101,8 +101,10 @@ public class AudioCapturer {
                     if (mAudioFrameCapturedListener != null) {
                         mAudioFrameCapturedListener.onAudioFrameCaptured(buffer);
                     }
-
+                    byte[] data = new byte[320];
+                    com.example.test.G711Code.G711aEncoder(buffer,data,ret);
                     Log.d(TAG , "OK, Captured "+ret+" bytes !");
+                    //TCPSend.sendMsgThread(data);
                 }
 
                 SystemClock.sleep(10);
