@@ -371,19 +371,6 @@ public class MainActivity extends Activity {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	/**
  *
  * 声音的播放
