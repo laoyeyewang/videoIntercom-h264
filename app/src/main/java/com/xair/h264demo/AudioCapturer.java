@@ -103,8 +103,8 @@ public class AudioCapturer {
                     }
                     byte[] data = new byte[320];
                     com.example.test.G711Code.G711aEncoder(buffer,data,ret);
-                    Log.d(TAG , "OK, Captured "+ret+" bytes !");
-                    //TCPSend.sendMsgThread(data);
+                    //Log.d(TAG , "OK, Captured "+ret+" bytes !");
+                    TCPSend.sendMsgThread(data);
                 }
 
                 SystemClock.sleep(10);

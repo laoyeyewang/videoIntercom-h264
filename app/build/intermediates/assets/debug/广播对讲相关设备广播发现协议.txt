@@ -1,0 +1,11 @@
+设备自发现以及设备搜索端口40400
+
+开机以及被搜索后，都向40400端口发送如下内容广播：
+室内机命令格式如下：
+{"DeviceType":"VideoTalkFangjian","ID":"7e37e0fe","IP":"192.168.2.140","MASK":"255.255.255.0","GATE":"192.168.2.1","DNS":"192.168.2.1","Louhao":"168","Danyuan":"03","Fangjian":"0103","Name":"android-室内","Version":"1.1"}
+
+门口机命令格式如下:
+{"DeviceType":"VideoTalkIpc","ID":"7e37e0fe","IP":"192.168.2.140","MASK":"255.255.255.0","GATE":"192.168.2.1","DNS":"192.168.2.1","Louhao":"168","Danyuan":"03","Name":"AI-IPC","Version":"1.1"}
+
+搜索命令，通过40400端口 广播发出如下字段即可：
+{"Action":"SeekDevice"}

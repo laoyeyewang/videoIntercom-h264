@@ -1,8 +1,8 @@
-package com.xair.h264demo;
-
+package com.xair.h264demo.UDP;
 
 import android.content.Intent;
 import android.util.Log;
+import com.xair.h264demo.MainActivity;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -11,8 +11,7 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
-public class UDPServer implements Runnable{
-
+public class UDPClient implements Runnable {
     final static int udpPort = 40400;
     final static String hostIp = "255.255.255.255";
     private static DatagramSocket socket = null;
@@ -20,7 +19,7 @@ public class UDPServer implements Runnable{
     private boolean udpLife = true; //udp生命线程
     private byte[] msgRcv = new byte[1024]; //接收消息
 
-    public UDPServer(){
+    public UDPClient(){
         super();
     }
 
@@ -48,13 +47,6 @@ public class UDPServer implements Runnable{
             Log.i("udpClient","未找到服务器");
             e.printStackTrace();
         }
-
-/*        try {
-            socket = new DatagramSocket();
-        } catch (SocketException e) {
-            Log.i("udpClient","建立发送数据报失败");
-            e.printStackTrace();
-        }*/
 
         packetSend = new DatagramPacket(msgSend.getBytes() , msgSend.getBytes().length,hostAddress,udpPort);
 
@@ -85,17 +77,15 @@ public class UDPServer implements Runnable{
                 socket.receive(packetRcv);
                 String RcvMsg = new String(packetRcv.getData(),packetRcv.getOffset(),packetRcv.getLength());
                 //将收到的消息发给主界面
-                Intent RcvIntent = new Intent();
-                RcvIntent.setAction("udpRcvMsg");
-                RcvIntent.putExtra("udpRcvMsg", RcvMsg);
-                MainActivity.context.sendBroadcast(RcvIntent);
-
+//                Intent RcvIntent = new Intent();
+//                RcvIntent.setAction("udpRcvMsg");
+//                RcvIntent.putExtra("udpRcvMsg", RcvMsg);
+//                MainActivity.context.sendBroadcast(RcvIntent);
                 Log.i("Rcv",RcvMsg);
             }catch (IOException e){
                 e.printStackTrace();
             }
         }
-
         Log.i("udpClient","UDP监听关闭");
         socket.close();
     }

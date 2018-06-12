@@ -33,7 +33,7 @@ public class AudioReader {
         //STREAM_RING：铃声
         //STREAM_SYSTEM：系统声音
         //STREAM_VOCIE_CALL：电话声音
-        mAudioTrack = new AudioTrack(AudioManager.STREAM_MUSIC,mFrequency,mChannel,mSampBit,minBufSize, AudioTrack.MODE_STREAM);
+        mAudioTrack = new AudioTrack(AudioManager.STREAM_MUSIC,mFrequency,mChannel,mSampBit,minBufSize*2, AudioTrack.MODE_STREAM);
 
         //AudioTrack中有MODE_STATIC和MODE_STREAM两种分类。
         //STREAM的意思是由用户在应用程序通过write方式把数据一次一次得写到audiotrack中。
@@ -53,7 +53,7 @@ public class AudioReader {
         }
     }
 
-    public static void playAudioTrack(byte[] data, int offset, int length){
+    public static void playAudioTrack(short[] data, int offset, int length){
         if (data == null || data.length == 0){return ;}
         try {
             mAudioTrack.write(data, offset, length);

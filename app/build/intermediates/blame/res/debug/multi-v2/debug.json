@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/wangheng/Documents/H264Demo1/app/build/intermediates/res/merged/debug/values-v14_values-v14.arsc.flat",
+            "outputFile": "/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/res/merged/debug/values-v14_values-v14.arsc.flat",
             "map": [
                 {
-                    "source": "/Users/wangheng/Documents/H264Demo1/app/src/main/res/values-v14/styles.xml",
+                    "source": "/Users/wangheng/Documents/H264/H264Demo1/app/src/main/res/values-v14/styles.xml",
                     "from": {
                         "startLines": "7",
                         "startColumns": "4",
@@ -25,10 +25,10 @@
             ]
         },
         {
-            "outputFile": "/Users/wangheng/Documents/H264Demo1/app/build/intermediates/res/merged/debug/values-w820dp-v13_values-w820dp-v13.arsc.flat",
+            "outputFile": "/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/res/merged/debug/values-w820dp-v13_values-w820dp-v13.arsc.flat",
             "map": [
                 {
-                    "source": "/Users/wangheng/Documents/H264Demo1/app/src/main/res/values-w820dp/dimens.xml",
+                    "source": "/Users/wangheng/Documents/H264/H264Demo1/app/src/main/res/values-w820dp/dimens.xml",
                     "from": {
                         "startLines": "7",
                         "startColumns": "4",
@@ -47,29 +47,10 @@
             ]
         },
         {
-            "outputFile": "/Users/wangheng/Documents/H264Demo1/app/build/intermediates/res/merged/debug/values_values.arsc.flat",
+            "outputFile": "/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/res/merged/debug/values_values.arsc.flat",
             "map": [
                 {
-                    "source": "/Users/wangheng/Documents/H264Demo1/app/src/main/res/values/styles.xml",
-                    "from": {
-                        "startLines": "6,15",
-                        "startColumns": "4,4",
-                        "startOffsets": "191,544",
-                        "endLines": "12,17",
-                        "endColumns": "12,12",
-                        "endOffsets": "503,701"
-                    },
-                    "to": {
-                        "startLines": "7,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "321,634",
-                        "endLines": "13,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "629,789"
-                    }
-                },
-                {
-                    "source": "/Users/wangheng/Documents/H264Demo1/app/src/main/res/values/dimens.xml",
+                    "source": "/Users/wangheng/Documents/H264/H264Demo1/app/src/main/res/values/dimens.xml",
                     "from": {
                         "startLines": "3,4",
                         "startColumns": "4,4",
@@ -86,7 +67,7 @@
                     }
                 },
                 {
-                    "source": "/Users/wangheng/Documents/H264Demo1/app/src/main/res/values/strings.xml",
+                    "source": "/Users/wangheng/Documents/H264/H264Demo1/app/src/main/res/values/strings.xml",
                     "from": {
                         "startLines": "5,3,4",
                         "startColumns": "4,4,4",
@@ -101,14 +82,33 @@
                         "endColumns": "52,45,52",
                         "endOffsets": "217,263,316"
                     }
+                },
+                {
+                    "source": "/Users/wangheng/Documents/H264/H264Demo1/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "6,15",
+                        "startColumns": "4,4",
+                        "startOffsets": "191,544",
+                        "endLines": "12,17",
+                        "endColumns": "12,12",
+                        "endOffsets": "503,701"
+                    },
+                    "to": {
+                        "startLines": "7,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "321,634",
+                        "endLines": "13,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "629,789"
+                    }
                 }
             ]
         },
         {
-            "outputFile": "/Users/wangheng/Documents/H264Demo1/app/build/intermediates/res/merged/debug/values-v11_values-v11.arsc.flat",
+            "outputFile": "/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/res/merged/debug/values-v11_values-v11.arsc.flat",
             "map": [
                 {
-                    "source": "/Users/wangheng/Documents/H264Demo1/app/src/main/res/values-v11/styles.xml",
+                    "source": "/Users/wangheng/Documents/H264/H264Demo1/app/src/main/res/values-v11/styles.xml",
                     "from": {
                         "startLines": "6",
                         "startColumns": "4",

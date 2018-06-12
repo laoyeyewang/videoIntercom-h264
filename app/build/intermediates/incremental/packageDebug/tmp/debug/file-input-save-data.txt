@@ -1,23 +1,27 @@
 #Internal package file, do not edit.
-#Thu Jun 07 19:52:11 CST 2018
-2.base=/Users/wangheng/Documents/H264Demo1/app/build/intermediates/assets/debug
-0.path=classes.dex
+#Sat Jun 09 11:47:24 CST 2018
+2.base=/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/assets/debug
+5.set=ASSET
+0.path=1280_720.h264
 2.baseType=DIRECTORY
-3.base=/Users/wangheng/Documents/H264Demo1/app/build/intermediates/assets/debug
+3.base=/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/assets/debug
 2.set=ASSET
 1.path=新建文本文档.txt
-4.base=/Users/wangheng/Documents/H264Demo1/app/build/intermediates/assets/debug
-count=5
-2.path=1280_720.h264
-4.set=ASSET
-3.path=stream_chn0.h264
+4.base=/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/transforms/dexMerger/debug/0
+count=6
+5.baseType=DIRECTORY
+2.path=stream_chn0.h264
+5.base=/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/assets/debug
+4.set=DEX
+3.path=welcome.wav
 3.baseType=DIRECTORY
 1.set=ASSET
-4.path=welcome.wav
+4.path=classes.dex
 1.baseType=DIRECTORY
-0.base=/Users/wangheng/Documents/H264Demo1/app/build/intermediates/transforms/dexMerger/debug/0
+5.path=广播对讲相关设备广播发现协议.txt
+0.base=/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/assets/debug
 0.baseType=DIRECTORY
 3.set=ASSET
-1.base=/Users/wangheng/Documents/H264Demo1/app/build/intermediates/assets/debug
+1.base=/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/assets/debug
 4.baseType=DIRECTORY
-0.set=DEX
+0.set=ASSET

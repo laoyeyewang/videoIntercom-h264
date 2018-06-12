@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/wangheng/Documents/H264Demo1/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v11/values-v11.xml",
+            "outputFile": "/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v11/values-v11.xml",
             "map": [
                 {
-                    "source": "/Users/wangheng/Documents/H264Demo1/app/src/main/res/values-v11/styles.xml",
+                    "source": "/Users/wangheng/Documents/H264/H264Demo1/app/src/main/res/values-v11/styles.xml",
                     "from": {
                         "startLines": "6",
                         "startColumns": "4",

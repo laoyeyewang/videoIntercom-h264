@@ -90,7 +90,7 @@ public class TCPSend {
                         // 特别注意：数据的结尾加上换行符才可让服务器端的readline()停止阻塞
                         // 步骤3：发送数据到服务端
                         outputStream.flush();
-                        Log.i(TAG, "run: 发送成功----------------" + msg);
+                        //Log.i(TAG, "run: 发送成功----------------" + msg);
                         // Toast.makeText(MainActivity.this,"发送成功 ",Toast.LENGTH_LONG).show();
                     }
                 } catch (IOException e) {
@@ -132,11 +132,37 @@ public class TCPSend {
                         // 步骤4:通知主线程,将接收的消息显示到界面
                     } catch (IOException e) {
                         e.printStackTrace();
+                        disconnectThread();
                     }
                 }
             }
         });
     }
+
+
+    /*
+     * 断开链接
+     * */
+    private void disconnectThread() {
+        try {
+            // 断开 客户端发送到服务器 的连接，即关闭输出流对象OutputStream
+            outputStream.close();
+
+            // 断开 服务器发送到客户端 的连接，即关闭输入流读取器对象BufferedReader
+            br.close();
+
+            // 最终关闭整个Socket连接
+            socket.close();
+
+            // 判断客户端和服务器是否已经断开连接
+            System.out.println(socket.isConnected());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public static byte[] intToByteArray(int value) {
         byte[] src = new byte[4];
