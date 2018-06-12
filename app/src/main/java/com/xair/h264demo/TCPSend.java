@@ -55,13 +55,14 @@ public class TCPSend {
                         byte[] headerB = new byte[4144];
                         byte[] nCMD = new byte[4];
                         nCMD = intToByteArray(13);
-                        String str1="TALK_LINK_SEND";
+                        //String str1="TALK_LINK_SEND";
+                        String str1="OPEN_DOOR";
                         byte[] b=str1.getBytes();
                         Log.i(TAG, "run: "+b);
                         System.arraycopy(nCMD,0,headerB,0,4);
-                        System.arraycopy(b,0,headerB,4,14);
+                        System.arraycopy(b,0,headerB,4,str1.length());
                         sendMsgThread(headerB);
-                        AudioCapturer.startCapture();
+                        //AudioCapturer.startCapture();
                         //receviedMsgThread();
                     } else {
                         Log.i(TAG, "run: 连接失败");
