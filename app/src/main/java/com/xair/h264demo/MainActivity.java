@@ -89,7 +89,7 @@ public class MainActivity extends Activity {
 
 	Thread readFileThread;
 	boolean isInit = false;
-    //AudioPlayer audioPlayer;
+	//AudioPlayer audioPlayer;
 
 	// Video Constants
 	private final static String MIME_TYPE = "video/avc"; // H.264 Advanced Video
@@ -98,18 +98,18 @@ public class MainActivity extends Activity {
 	private final static int TIME_INTERNAL = 50;
 	private final static int HEAD_OFFSET = 512;
 
-//	private MyReceiver myReceiver;
+	private MyReceiver myReceiver;
 
 	AudioTrack player=null;
 	int bufferSize=0;//最小缓冲区大小
-    AudioRecord audioRecord=null;
+	AudioRecord audioRecord=null;
 	//int sampleRateInHz = 11025;//采样率
 	int sampleRateInHz = 8000;
 	int channelConfig = AudioFormat.CHANNEL_IN_MONO; //单声道
 	int audioFormat = AudioFormat.ENCODING_PCM_16BIT; //量化位数
 
-    byte[] receveAudio = new byte[1312];
-    int audioindex = 0;
+	byte[] receveAudio = new byte[1312];
+	int audioindex = 0;
 
 	TCPServer tcpServer;
 
@@ -119,9 +119,9 @@ public class MainActivity extends Activity {
 	public static boolean bDecFinished = false;
 
 
-    int maxBufferSize = 1024*200;
-    private byte[] soure = new byte[maxBufferSize];
-    int cutposition = 0;
+	int maxBufferSize = 1024*200;
+	private byte[] soure = new byte[maxBufferSize];
+	int cutposition = 0;
 
 
 
@@ -164,14 +164,14 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		mSurfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
-//		//启动服务
-//		Intent intent = new Intent(MainActivity.this,UdpReceiver.class);
-//		startService(intent);
-//		//注册广播接收器
-//		myReceiver = new MyReceiver();
-//		IntentFilter filter = new IntentFilter();
-//		filter.addAction("com.example.weiyuzk.UdpReceiver");
-//		registerReceiver(myReceiver, filter);
+		//启动服务
+		Intent intent = new Intent(MainActivity.this,UdpReceiver.class);
+		startService(intent);
+		//注册广播接收器
+		myReceiver = new MyReceiver();
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("com.example.weiyuzk.UdpReceiver");
+		registerReceiver(myReceiver, filter);
 
 
 
@@ -209,7 +209,7 @@ public class MainActivity extends Activity {
 		//服务端
 		UDPServerInit();
 
-        tcpServerData();
+		tcpServerData();
 		//UDPServerData();
 
 		mediaCodecEx = new MediaCodecEx();
@@ -229,8 +229,8 @@ public class MainActivity extends Activity {
 				Gson gson = new Gson();
 				UDPSend udpSend = new UDPSend();
 				udpSend.setDeviceType(DeviceType);
-			    udpSend.setID(ID);
-			    udpSend.setIP(IP);
+				udpSend.setID(ID);
+				udpSend.setIP(IP);
 				udpSend.setMASK(MASK);
 				udpSend.setGATE(GATE);
 				udpSend.setDNS(DNS);
@@ -324,9 +324,58 @@ public class MainActivity extends Activity {
 					mediaCodecEx.bShowing = true;
 					isInit = true;
 				}
+
+//				byte[] msg = intent.getByteArrayExtra("tcpServerReceiver");
+//				Log.i(TAG, "onReceive: " + msg);
+//				byte[] dataV = new byte[4];
+//				System.arraycopy(msg, 100, dataV, 0, 4);
+//				Log.i(TAG, "onReceive: " + ByteArrayToInt(dataV));
+
+//				if (ByteArrayToInt(dataV) == 1) {
+//					byte[] dataB = new byte[msg.length - 116];
+//					System.arraycopy(msg, 116, dataB, 0, msg.length - 116);
+//					int datacount = dataB.length;
+//					//Log.i(TAG, "onReceive---------------wang: " + datacount);
+//					System.out.print(datacount);
+//					//onFrame(dataB, 0, datacount);
+//					mediaCodecEx.InputDataToDecoder(dataB,datacount);
+//
+//				} else if (ByteArrayToInt(dataV) == 2) {
+//					byte[] dataA = new byte[msg.length - 116];
+//					System.arraycopy(msg, 116, dataA, 0, msg.length - 116);
+//					int dataleng = dataA.length;
+//					System.arraycopy(dataA, 0, receveAudio, dataleng * audioindex, dataleng);
+//					audioindex++;
+//					if (audioindex == 4) {
+//						Log.i(TAG, "onReceive: 声音数据------------------------------------" + receveAudio.length);
+//
+//						//playVudio(receveAudio);
+//
+//						//receveAudio = new byte[1312];
+//						audioindex = 0;
+//					}
+//				}
+				//bDecFinished = true;
+				Log.i(TAG, "onReceive:=============================== ");
+
+
 			}
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	@Override
@@ -351,7 +400,7 @@ public class MainActivity extends Activity {
 	}
 
 
-    public void initDecoder() {
+	public void initDecoder() {
 
 		mCodec = MediaCodec.createDecoderByType(MIME_TYPE);
 		MediaFormat mediaFormat = MediaFormat.createVideoFormat(MIME_TYPE,
@@ -400,52 +449,98 @@ public class MainActivity extends Activity {
 
 
 
-//	public class MyReceiver extends BroadcastReceiver {
-//			public void onReceive(Context context, Intent intent){
-//				try {
-//
-//                    if (!isInit) {
-//                        initDecoder();
-//                        isInit = true;
-//                    }
-//					Bundle bundle = intent.getExtras();
-//					byte[] count = bundle.getByteArray("count");
-//					Log.i(TAG, "onReceive: " + count.length);
-//					System.out.print(count.length);
-//					byte[] dataV = new byte[4];
-//					System.arraycopy(count,100,dataV,0,4);
-//					Log.i(TAG, "onReceive: "+ByteArrayToInt(dataV));
-//
-//					if (ByteArrayToInt(dataV) == 1){
-//                        byte[] dataB = new byte[count.length-116];
-//                        System.arraycopy(count,116,dataB,0,count.length-116);
-//						int datacount = dataB.length;
-//						Log.i(TAG, "onReceive: " + datacount);
-//						System.out.print(datacount);
-//						onFrame(dataB, 0, datacount);
-//						Log.i(TAG, "onReceive: "+count);
-//					}else if (ByteArrayToInt(dataV) == 2) {
-//                       byte[] dataA = new byte[count.length-116];
-//                        System.arraycopy(count,116,dataA,0,count.length-116);
-//                        int dataleng = dataA.length;
-////						readFileThread = new Thread(readFile);
-////						readFileThread.start();
-//
-////						System.arraycopy(dataA,0,receveAudio,dataleng*audioindex,dataleng);
-////						audioindex++;
-////                        if (audioindex == 4){
-////							playVudio(receveAudio);
-////							//receveAudio = new byte[1312];
-////							audioindex = 0;
-////						}
-//
-//                    }
-//
-//				}catch (Exception e){
-//					Log.i(TAG, "onReceive: "+e);
-//				}
-//			}
+
+
+
+
+
+	/**
+	 * Find H264 frame head
+	 *
+	 * @param
+	 * @param
+	 * @return the offset of frame head, return 0 if can not find one
+	 */
+//	static int findHead(byte[] buffer, int len) {
+//		int i;
+//		for (i = HEAD_OFFSET; i < len; i++) {
+//			if (checkHead(buffer, i))
+//				break;
+//		}
+//		if (i == len)
+//			return 0;
+//		if (i == HEAD_OFFSET)
+//			return 0;
+//		return i;
 //	}
+//
+//	/**
+//	 * Check if is H264 frame head
+//	 *
+//	 * @param buffer
+//	 * @param offset
+//	 * @return whether the src buffer is frame head
+//	 */
+//	static boolean checkHead(byte[] buffer, int offset) {
+//		// 00 00 00 01
+//		if (buffer[offset] == 0 && buffer[offset + 1] == 0
+//				&& buffer[offset + 2] == 0 && buffer[3] == 1)
+//			return true;
+//		// 00 00 01
+//		if (buffer[offset] == 0 && buffer[offset + 1] == 0
+//				&& buffer[offset + 2] == 1)
+//			return true;
+//		return false;
+//	}
+
+
+
+	public class MyReceiver extends BroadcastReceiver {
+		public void onReceive(Context context, Intent intent){
+			try {
+
+				if (!isInit) {
+					initDecoder();
+					isInit = true;
+				}
+				Bundle bundle = intent.getExtras();
+				byte[] count = bundle.getByteArray("count");
+				Log.i(TAG, "onReceive: " + count.length);
+				System.out.print(count.length);
+				byte[] dataV = new byte[4];
+				System.arraycopy(count,100,dataV,0,4);
+				Log.i(TAG, "onReceive: "+ByteArrayToInt(dataV));
+
+				if (ByteArrayToInt(dataV) == 1){
+					byte[] dataB = new byte[count.length-116];
+					System.arraycopy(count,116,dataB,0,count.length-116);
+					int datacount = dataB.length;
+					Log.i(TAG, "onReceive: " + datacount);
+					System.out.print(datacount);
+					onFrame(dataB, 0, datacount);
+					Log.i(TAG, "onReceive: "+count);
+				}else if (ByteArrayToInt(dataV) == 2) {
+					byte[] dataA = new byte[count.length-116];
+					System.arraycopy(count,116,dataA,0,count.length-116);
+					int dataleng = dataA.length;
+//						readFileThread = new Thread(readFile);
+//						readFileThread.start();
+
+//						System.arraycopy(dataA,0,receveAudio,dataleng*audioindex,dataleng);
+//						audioindex++;
+//                        if (audioindex == 4){
+//							playVudio(receveAudio);
+//							//receveAudio = new byte[1312];
+//							audioindex = 0;
+//						}
+
+				}
+
+			}catch (Exception e){
+				Log.i(TAG, "onReceive: "+e);
+			}
+		}
+	}
 
 
 
@@ -464,9 +559,9 @@ public class MainActivity extends Activity {
 
 
 	/**
- *
- * 声音的播放
- */
+	 *
+	 * 声音的播放
+	 */
 	Runnable readFile = new Runnable() {
 		@Override
 		public void run() {
@@ -559,8 +654,16 @@ public class MainActivity extends Activity {
 		new Thread() {
 			@Override
 			public void run() {
+//                super.run();
 				while (true) {
 					try {
+//						try {
+//							Thread.sleep(10);
+//						} catch (InterruptedException e) {
+//							e.printStackTrace();
+//						}
+
+						// byte[] by = new byte[307200];
 						byte[] by = new byte[1024*4];
 						DatagramPacket packet = new DatagramPacket(by, by.length);
 						System.out.print(by.length);
@@ -572,6 +675,8 @@ public class MainActivity extends Activity {
 
 						if (!isInit) {
 							initDecoder();
+//							mediaCodecEx.InitDecoder(mSurfaceView.getHolder().getSurface(),MIME_TYPE,VIDEO_WIDTH,VIDEO_HEIGHT);
+//							mediaCodecEx.bShowing = true;
 							isInit = true;
 						}
 
@@ -597,42 +702,53 @@ public class MainActivity extends Activity {
 
 								if (cutposition >= nlastSorftLeng){
 									Log.i(TAG, "run: -------------------------"+cutposition);
-								Log.i(TAG, "run: +++++++++++++++++++++++++"+nlastSorftLeng);
+									Log.i(TAG, "run: +++++++++++++++++++++++++"+nlastSorftLeng);
 									Log.i(TAG, "run: {{{{{{{{{{{{{{{{{{{{"+dataLeng);
-								i += (dataLeng + 116);
+									i += (dataLeng + 116);
 
-								byte[] dataV = new byte[4];
-								System.arraycopy(data,100,dataV,0,4);
-								Log.i(TAG, "onReceive: "+ByteArrayToInt(dataV));
+									byte[] dataV = new byte[4];
+									System.arraycopy(data,100,dataV,0,4);
+									Log.i(TAG, "onReceive: "+ByteArrayToInt(dataV));
 
-								if (ByteArrayToInt(dataV) == 1){
-									byte[] videoB = new byte[dataLeng];
-									System.arraycopy(buffer,116,videoB,0,dataLeng);
+									if (ByteArrayToInt(dataV) == 1){
+										byte[] videoB = new byte[dataLeng];
+										System.arraycopy(buffer,116,videoB,0,dataLeng);
 
-									onFrame(videoB,0,dataLeng);
-									//MainActivity.mediaCodecEx.InputDataToDecoder(buffer,dataLeng + 116);
-									//MainActivity.mediaCodecEx.InputDataToDecoder(b,dataLeng);
-									//Log.i(TAG, "data:++++++++++++++++ ==============="+buffer.length);
-								}else {
-									byte[] vediobuffer = new byte[dataLeng+116];
-									System.arraycopy(soure,i,vediobuffer,0,dataLeng + 116);
-								}
-								if (cutposition - nlastSorftLeng >= 0) {
-									byte[] newData = new byte[cutposition - nlastSorftLeng];
-									System.arraycopy(soure, nlastSorftLeng, newData, 0, cutposition - nlastSorftLeng);
-									System.arraycopy(newData, 0, soure, 0, cutposition - nlastSorftLeng);
-									cutposition -= nlastSorftLeng;
-								}else {
-									cutposition = 0;
-								}
-								long a2= SystemClock.elapsedRealtime();
-								//Log.i(TAG, "time:++++++++++++++++ ==============="+(a2-a1)+"========="+cutposition);
+										onFrame(videoB,0,dataLeng);
+										//MainActivity.mediaCodecEx.InputDataToDecoder(buffer,dataLeng + 116);
+										//MainActivity.mediaCodecEx.InputDataToDecoder(b,dataLeng);
+										//Log.i(TAG, "data:++++++++++++++++ ==============="+buffer.length);
+									}else {
+										byte[] vediobuffer = new byte[dataLeng+116];
+										System.arraycopy(soure,i,vediobuffer,0,dataLeng + 116);
+									}
+									if (cutposition - nlastSorftLeng >= 0) {
+										byte[] newData = new byte[cutposition - nlastSorftLeng];
+										System.arraycopy(soure, nlastSorftLeng, newData, 0, cutposition - nlastSorftLeng);
+										System.arraycopy(newData, 0, soure, 0, cutposition - nlastSorftLeng);
+										cutposition -= nlastSorftLeng;
+									}else {
+										cutposition = 0;
+									}
+									long a2= SystemClock.elapsedRealtime();
+									//Log.i(TAG, "time:++++++++++++++++ ==============="+(a2-a1)+"========="+cutposition);
 								}else {
 									break;
 								}
 							}
 
 						}
+
+
+
+
+
+
+
+
+
+
+
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -647,35 +763,43 @@ public class MainActivity extends Activity {
 	 */
 
 	public void tcpServerData() {
-	    new Thread(){
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                super.run();
-                ServerSocket serverSocket=null;
-                try{
-                    //创建ServerSocket对象监听PORT端口
-                    serverSocket = new ServerSocket(6803);
-                    //接收tcp连接返回socket对象
-                    Socket socket= serverSocket.accept();
+		new Thread(){
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				super.run();
+				ServerSocket serverSocket=null;
+				try{
+					//创建ServerSocket对象监听PORT端口
+					serverSocket = new ServerSocket(6803);
+					//接收tcp连接返回socket对象
+					Socket socket= serverSocket.accept();
 
-                    //获得输入流
+					//获得输入流
 					is=socket.getInputStream();
-                    ///////////////////////////////////////////////////////////////////////////////////////
-                    //获得输出流
-                    OutputStream outputStream = socket.getOutputStream();
+					///////////////////////////////////////////////////////////////////////////////////////
+					//获得输出流
+					OutputStream outputStream = socket.getOutputStream();
 					byte buff[]  = new byte[1024 * 8];
-                    int rcvLen = 0;
-                    String s;
+					int rcvLen = 0;
+					String s;
 
-                    //读取接收到的数据
-                    while((rcvLen = is.read(buff))!=-1)
-                    {
+					//读取接收到的数据
+					while((rcvLen = is.read(buff))!=-1)
+					{
+						//outputStream.write(byteBuffer, 0, temp);
 						if (!isInit) {
-							initDecoder();
+							//initDecoder();
+//							mediaCodecEx.InitDecoder(mSurfaceView.getHolder().getSurface(),MIME_TYPE,VIDEO_WIDTH,VIDEO_HEIGHT);
+//							mediaCodecEx.bShowing = true;
 							isInit = true;
 						}
 
+						//                            if ((rcvLen = is.read(buff)) != -1){
+
+						// rcvMsg = new String(buff,0,rcvLen);
+						//Log.i(TAG, "run:收到消息: " + rcvMsg);
+						//Log.i(TAG, "run: ++++++++++++++++" + rcvLen);
 						byte[] data = new byte[rcvLen];
 						System.arraycopy(buff,0,data,0,rcvLen);
 
@@ -687,12 +811,10 @@ public class MainActivity extends Activity {
 						Log.i(TAG, "run: ====================="+cutposition);
 						///////////////////////////////////
 						int nlastSorftLeng = 0;
-
+						long a1= SystemClock.elapsedRealtime();
 						for (int i = 0; i < cutposition; i++) {
-							long a1= SystemClock.elapsedRealtime();
+
 							int dataLeng = checkHeadLeng(soure, i);
-							long a2= SystemClock.elapsedRealtime();
-							Log.i(TAG, "time:++++++++++++++++ ==============="+(a2-a1));
 							if (dataLeng > 0 && (dataLeng + i) <= maxBufferSize){
 								byte[] buffer = new byte[dataLeng+116];
 								System.arraycopy(soure,i,buffer,0,dataLeng + 116);
@@ -714,24 +836,24 @@ public class MainActivity extends Activity {
 
 										byte[] videoB = new byte[dataLeng];
 										System.arraycopy(buffer,116,videoB,0,dataLeng);
-										onFrame(videoB,0,dataLeng);
+
+										//onFrame(videoB,0,dataLeng);
 
 									}else if(ByteArrayToInt(dataV) == 2){
-
 										byte[] vediobuffer = new byte[436];
+										//System.arraycopy(soure,i,vediobuffer,0,dataLeng + 116);
 										System.arraycopy(soure,0,vediobuffer,0,dataLeng+116);
 										System.arraycopy(vediobuffer,116,receveAudio,0+dataLeng * audioindex,dataLeng);
-						             audioindex++;
-                       			   if (audioindex == 4){
-									   short[] pcm = new short[1312];
-									   com.example.test.G711Code.G711aDecoder(pcm,receveAudio,1312);
-									   AudioReader.init();
-									   AudioReader.playAudioTrack(pcm,0,1312);
-									audioindex = 0;
+										audioindex++;
+										if (audioindex == 4){
+											//playVudio(b);
+											short[] pcm = new short[1312];
+											com.example.test.G711Code.G711aDecoder(pcm,receveAudio,1312);
+											AudioReader.init();
+											AudioReader.playAudioTrack(pcm,0,1312);
+											audioindex = 0;
 										}
-
 									}
-
 									if (cutposition - nlastSorftLeng >= 0) {
 										byte[] newData = new byte[cutposition - nlastSorftLeng];
 										System.arraycopy(soure, nlastSorftLeng, newData, 0, cutposition - nlastSorftLeng);
@@ -740,12 +862,13 @@ public class MainActivity extends Activity {
 									}else {
 										cutposition = 0;
 									}
-
-
+									long a2= SystemClock.elapsedRealtime();
+									Log.i(TAG, "time:++++++++++++++++ ==============="+(a2-a1)+"========="+cutposition);
 								}else {
 									break;
 								}
 							}
+
 						}
 
 
@@ -757,53 +880,61 @@ public class MainActivity extends Activity {
 
 
 					}
-                    //System.out.println(new String(byteBuffer,0,temp));
-                    outputStream.flush();
-                    socket.close();
-                    serverSocket.close();
+					//System.out.println(new String(byteBuffer,0,temp));
+					outputStream.flush();
+					socket.close();
+					serverSocket.close();
 
-                }catch(IOException e){
-                    e.printStackTrace();
-                }
-            }
-        }.start();
-    }
+				}catch(IOException e){
+					e.printStackTrace();
+				}
+			}
+		}.start();
+	}
 
 
-    /**
-     * Check if is H264 frame head
-     *
-     * @param buffer
-     * @param offset
-     * @return whether the src buffer is frame head
-     */
-    static int checkHeadLeng(byte[] buffer, int offset) {
-        // 00 00 00 01
+	/**
+	 * Check if is H264 frame head
+	 *
+	 * @param buffer
+	 * @param offset
+	 * @return whether the src buffer is frame head
+	 */
+	static int checkHeadLeng(byte[] buffer, int offset) {
+		// 00 00 00 01
 		if(buffer[offset] != 0x74) {
-		    return 0;
-        }
+			return 0;
+		}
 
 		if(buffer[offset + 4] != 0x57) {
-		     return 0;
-        }
+			return 0;
+		}
 
-        if (buffer[offset + 5] != 0x59){
-		    return 0;
-        }
+		if (buffer[offset + 5] != 0x59){
+			return 0;
+		}
 
-        if (buffer[offset + 6] != 0x41) {
-		      return 0;
-        }
+		if (buffer[offset + 6] != 0x41) {
+			return 0;
+		}
 
 		if (buffer[offset + 7] != 0x56){
-		    return 0;
-         }
+			return 0;
+		}
 
 		byte[] l = new byte[4];
 		System.arraycopy(buffer,offset+108,l,0,4);
 		return ByteArrayToInt(l);
 
-    }
+	}
+	static boolean checkHead(byte[] buffer, int offset) {
+		// 00 00 00 01
+		if(buffer[offset] == 0 && buffer[offset+1] == 0 && buffer[offset+2] == 0 && buffer[offset+3] == 1) {
+			return true;
+		}
+		return false;
+
+	}
 
 
 	/**

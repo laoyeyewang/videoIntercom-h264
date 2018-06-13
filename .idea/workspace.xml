@@ -20,29 +20,22 @@
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/MainActivity$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/MainActivity$3.class" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/MainActivity$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/MainActivity$4.class" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/MainActivity$MyBroadcastReceiver.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/MainActivity$MyBroadcastReceiver.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/MainActivity$MyReceiver.class" afterPath="" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/MainActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/MainActivity.class" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/TCPSend$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/TCPSend$1.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/TCPSend$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/TCPSend$2.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/TCPSend$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/TCPSend$3.class" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/TCPSend.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/xair/h264demo/TCPSend.class" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/file-input-save-data.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/file-input-save-data.txt" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/Nn9QIe2rs5E9nWMypLJxQ6tGekA=" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/tmp/debug/zip-cache/Nn9QIe2rs5E9nWMypLJxQ6tGekA=" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/resources-debug.ap_" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/MainActivity$2.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/MainActivity$2.dex" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/MainActivity$3.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/MainActivity$3.dex" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/MainActivity$4.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/MainActivity$4.dex" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/MainActivity$MyBroadcastReceiver.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/MainActivity$MyBroadcastReceiver.dex" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/MainActivity$MyReceiver.dex" afterPath="" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/MainActivity.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/MainActivity.dex" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/TCPSend$1.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/TCPSend$1.dex" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/TCPSend$2.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/TCPSend$2.dex" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/TCPSend$3.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/TCPSend$3.dex" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/TCPSend.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexBuilder/debug/1/com/xair/h264demo/TCPSend.dex" />
       <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex" />
+      <change beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/__content__.json" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dexMerger/debug/__content__.json" />
       <change beforePath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/debug/app-debug.apk" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/MainActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/TCPSend.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/TCPSend.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -71,20 +64,9 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="937">
-              <caret line="716" column="47" lean-forward="false" selection-start-line="716" selection-start-column="40" selection-end-line="716" selection-end-column="47" />
-              <folding>
-                <element signature="e#5433#6033#0" expanded="true" />
-                <element signature="e#6032#6033#0" expanded="true" />
-                <element signature="e#7210#7884#0" expanded="true" />
-                <element signature="e#7883#7884#0" expanded="true" />
-                <element signature="e#11826#13181#0" expanded="true" />
-                <element signature="e#13180#13181#0" expanded="true" />
-                <element signature="e#14484#17297#0" expanded="true" />
-                <element signature="e#17296#17297#0" expanded="true" />
-                <element signature="e#17374#21357#0" expanded="true" />
-                <element signature="e#21356#21357#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-252">
+              <caret line="791" column="30" lean-forward="false" selection-start-line="791" selection-start-column="30" selection-end-line="791" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -92,8 +74,8 @@
       <file leaf-file-name="G711Code.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/G711Code.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="98" column="23" lean-forward="false" selection-start-line="98" selection-start-column="23" selection-end-line="98" selection-end-column="23" />
+            <state relative-caret-position="181">
+              <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -102,8 +84,8 @@
       <file leaf-file-name="AudioReader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/AudioReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="35" column="104" lean-forward="false" selection-start-line="35" selection-start-column="104" selection-end-line="35" selection-end-column="104" />
+            <state relative-caret-position="211">
+              <caret line="55" column="23" lean-forward="false" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -132,21 +114,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TCPSend.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/TCPSend.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="430">
-              <caret line="71" column="17" lean-forward="true" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="37" column="31" lean-forward="false" selection-start-line="37" selection-start-column="31" selection-end-line="39" selection-end-column="41" />
+            <state relative-caret-position="285">
+              <caret line="15" column="3" lean-forward="false" selection-start-line="15" selection-start-column="3" selection-end-line="16" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -181,6 +153,9 @@
     <findStrings>
       <find>onReceive</find>
       <find>readFile</find>
+      <find>tcpServerData</find>
+      <find>release</find>
+      <find>receveAudio</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -2085,8 +2060,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="150" />
-    <option name="y" value="42" />
+    <option name="x" value="-176" />
+    <option name="y" value="31" />
     <option name="width" value="1537" />
     <option name="height" value="821" />
   </component>
@@ -2184,9 +2159,9 @@
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1528799058050" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1528881756298" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="device.picker.selection" value="33ca2c18" />
+    <property name="device.picker.selection" value="881c1e1756f700000000" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -2428,7 +2403,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="150" y="42" width="1537" height="821" extended-state="0" />
+    <frame x="-176" y="31" width="1537" height="821" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2450,16 +2425,38 @@
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08108108" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07539118" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.04125178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.051209103" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24949832" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -2467,15 +2464,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/MainActivity.java</url>
-          <line>532</line>
-          <properties />
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="62" />
+      <option name="time" value="64" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2489,41 +2478,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/android/util/Log.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/lang/Object.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/lang/AbstractStringBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding>
-            <element signature="e#2062#2063#0" expanded="false" />
-            <element signature="e#2112#2113#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/lang/StringBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
@@ -2716,7 +2670,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/TCPSend.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
-          <caret line="71" column="17" lean-forward="true" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
+          <caret line="70" column="17" lean-forward="false" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -2733,18 +2687,499 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="937">
           <caret line="716" column="47" lean-forward="false" selection-start-line="716" selection-start-column="40" selection-end-line="716" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/android/util/Log.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/lang/AbstractStringBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
           <folding>
-            <element signature="e#5433#6033#0" expanded="true" />
-            <element signature="e#6032#6033#0" expanded="true" />
-            <element signature="e#7210#7884#0" expanded="true" />
-            <element signature="e#7883#7884#0" expanded="true" />
-            <element signature="e#11826#13181#0" expanded="true" />
-            <element signature="e#13180#13181#0" expanded="true" />
-            <element signature="e#14484#17297#0" expanded="true" />
-            <element signature="e#17296#17297#0" expanded="true" />
-            <element signature="e#17374#21357#0" expanded="true" />
-            <element signature="e#21356#21357#0" expanded="true" />
+            <element signature="e#2062#2063#0" expanded="false" />
+            <element signature="e#2112#2113#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/lang/StringBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/jre/jdk/Contents/Home/jre/lib/rt.jar!/java/nio/DirectByteBuffer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4598">
+          <caret line="273" column="5" lean-forward="false" selection-start-line="273" selection-start-column="5" selection-end-line="273" selection-end-column="5" />
+          <folding>
+            <marker date="1523678402000" expanded="false" signature="0:104" ph="/.../" />
+            <marker date="1523678402000" expanded="false" signature="132:256" ph="..." />
+            <marker date="1523678402000" expanded="false" signature="579:590" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="606:612" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="642:653" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="673:679" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="712:1517" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="1574:1698" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="1750:1874" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="1964:2116" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="2208:2360" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="2392:2676" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="2712:2831" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="2874:2994" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="3021:3032" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="3052:3058" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="3089:3100" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="3140:3146" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="3169:3180" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="3232:3238" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="3269:3280" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="3334:3340" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="3401:3993" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="4032:4120" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="4169:4259" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="4304:5511" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="5572:6165" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="6199:6543" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="6574:6585" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="6597:6603" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="6636:6647" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="6660:6666" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="6691:6702" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="6751:6757" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="6793:6804" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="6852:6858" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="6896:7122" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="7149:7160" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="7211:7217" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="7252:7263" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="7318:7324" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="7379:7595" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="7638:7725" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="7778:7869" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="7908:8527" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="8567:8796" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="8825:8836" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="8888:8894" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="8931:8942" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="8998:9004" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="9061:9279" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="9324:9412" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="9467:9559" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="9600:10225" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="10261:10484" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="10509:10520" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="10570:10576" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="10609:10620" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="10674:10680" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="10733:10947" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="10988:11074" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="11125:11215" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="11252:11865" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="11903:12129" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="12156:12167" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="12218:12224" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="12259:12270" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="12325:12331" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="12386:12602" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="12645:12732" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="12785:12876" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="12915:13534" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="13574:13821" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="13850:13861" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="13913:13919" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="13956:13967" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="14023:14029" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="14086:14356" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="14401:14489" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="14544:14636" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="14677:15302" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="15344:15597" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="15628:15639" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="15692:15698" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="15737:15748" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="15805:15811" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="15870:16146" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="16193:16282" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="16339:16432" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="16475:17106" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="17119:17234" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="17293:17887" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="17502:17642" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="17670:17881" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/android/content/ContextWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="405" column="0" lean-forward="false" selection-start-line="405" selection-start-column="0" selection-end-line="405" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/android/app/ContextImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="775" column="0" lean-forward="false" selection-start-line="775" selection-start-column="0" selection-end-line="775" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/TCPServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/UDP/UDPClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/AudioCapturer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/MediaCodecEx.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1874">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/UdpReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1145">
+          <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+          <folding>
+            <element signature="e#537#2578#0" expanded="true" />
+            <element signature="e#2577#2578#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="3" lean-forward="false" selection-start-line="15" selection-start-column="3" selection-end-line="16" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/G711Code.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-19/android/media/AudioFormat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="88" column="28" lean-forward="false" selection-start-line="88" selection-start-column="28" selection-end-line="88" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/AudioReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="60" column="31" lean-forward="false" selection-start-line="60" selection-start-column="31" selection-end-line="60" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="792" column="65" lean-forward="false" selection-start-line="792" selection-start-column="53" selection-end-line="792" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/android/util/Log.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/lang/AbstractStringBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="74" column="0" lean-forward="false" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding>
+            <element signature="e#2062#2063#0" expanded="false" />
+            <element signature="e#2112#2113#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/java/lang/StringBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/jre/jdk/Contents/Home/jre/lib/rt.jar!/java/nio/DirectByteBuffer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4598">
+          <caret line="273" column="5" lean-forward="false" selection-start-line="273" selection-start-column="5" selection-end-line="273" selection-end-column="5" />
+          <folding>
+            <marker date="1523678402000" expanded="false" signature="0:104" ph="/.../" />
+            <marker date="1523678402000" expanded="false" signature="132:256" ph="..." />
+            <marker date="1523678402000" expanded="false" signature="579:590" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="606:612" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="642:653" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="673:679" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="712:1517" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="1574:1698" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="1750:1874" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="1964:2116" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="2208:2360" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="2392:2676" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="2712:2831" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="2874:2994" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="3021:3032" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="3052:3058" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="3089:3100" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="3140:3146" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="3169:3180" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="3232:3238" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="3269:3280" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="3334:3340" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="3401:3993" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="4032:4120" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="4169:4259" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="4304:5511" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="5572:6165" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="6199:6543" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="6574:6585" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="6597:6603" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="6636:6647" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="6660:6666" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="6691:6702" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="6751:6757" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="6793:6804" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="6852:6858" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="6896:7122" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="7149:7160" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="7211:7217" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="7252:7263" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="7318:7324" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="7379:7595" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="7638:7725" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="7778:7869" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="7908:8527" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="8567:8796" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="8825:8836" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="8888:8894" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="8931:8942" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="8998:9004" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="9061:9279" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="9324:9412" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="9467:9559" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="9600:10225" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="10261:10484" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="10509:10520" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="10570:10576" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="10609:10620" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="10674:10680" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="10733:10947" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="10988:11074" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="11125:11215" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="11252:11865" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="11903:12129" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="12156:12167" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="12218:12224" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="12259:12270" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="12325:12331" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="12386:12602" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="12645:12732" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="12785:12876" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="12915:13534" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="13574:13821" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="13850:13861" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="13913:13919" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="13956:13967" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="14023:14029" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="14086:14356" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="14401:14489" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="14544:14636" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="14677:15302" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="15344:15597" ph="{...}" />
+            <marker date="1523678402000" expanded="false" signature="15628:15639" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="15692:15698" ph=" }" />
+            <marker date="1523678402000" expanded="false" signature="15737:15748" ph=" { " />
+            <marker date="1523678402000" expanded="false" signature="15805:15811" ph=" }" />
+            <marker date="1523678402000" expanded="true" signature="15870:16146" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="16193:16282" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="16339:16432" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="16475:17106" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="17119:17234" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="17293:17887" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="17502:17642" ph="{...}" />
+            <marker date="1523678402000" expanded="true" signature="17670:17881" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/android/content/ContextWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="405" column="0" lean-forward="false" selection-start-line="405" selection-start-column="0" selection-end-line="405" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-23/android/app/ContextImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="775" column="0" lean-forward="false" selection-start-line="775" selection-start-column="0" selection-end-line="775" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/TCPServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/AudioCapturer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/UdpReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1145">
+          <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+          <folding>
+            <element signature="e#537#2578#0" expanded="true" />
+            <element signature="e#2577#2578#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/G711Code.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="101" column="0" lean-forward="false" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="3" lean-forward="false" selection-start-line="15" selection-start-column="3" selection-end-line="16" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/UDP/UDPClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/TCPSend.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="71" column="17" lean-forward="true" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/MediaCodecEx.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1874">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/AudioReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="55" column="23" lean-forward="false" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../git/H264Demo1/app/src/main/java/com/xair/h264demo/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="69" column="20" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="1059" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xair/h264demo/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-252">
+          <caret line="791" column="30" lean-forward="false" selection-start-line="791" selection-start-column="30" selection-end-line="791" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
