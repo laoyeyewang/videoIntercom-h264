@@ -97,7 +97,7 @@ public class MainActivity extends Activity {
 	private final static int VIDEO_HEIGHT = 480;
 	private final static int TIME_INTERNAL = 50;
 	private final static int HEAD_OFFSET = 512;
-
+    private final static int VEDIO_DATALENG = 1312;
 	private MyReceiver myReceiver;
 
 	AudioTrack player=null;
@@ -108,7 +108,7 @@ public class MainActivity extends Activity {
 	int channelConfig = AudioFormat.CHANNEL_IN_MONO; //单声道
 	int audioFormat = AudioFormat.ENCODING_PCM_16BIT; //量化位数
 
-    byte[] receveAudio = new byte[1312];
+    byte[] receveAudio = new byte[VEDIO_DATALENG];
     int audioindex = 0;
 
 	TCPServer tcpServer;
@@ -674,9 +674,9 @@ public class MainActivity extends Activity {
 						byte[] data = new  byte[dataL];
 
 						if (!isInit) {
-							initDecoder();
-//							mediaCodecEx.InitDecoder(mSurfaceView.getHolder().getSurface(),MIME_TYPE,VIDEO_WIDTH,VIDEO_HEIGHT);
-//							mediaCodecEx.bShowing = true;
+							//initDecoder();
+							mediaCodecEx.InitDecoder(mSurfaceView.getHolder().getSurface(),MIME_TYPE,VIDEO_WIDTH,VIDEO_HEIGHT);
+							mediaCodecEx.bShowing = true;
 							isInit = true;
 						}
 
@@ -714,9 +714,9 @@ public class MainActivity extends Activity {
 									byte[] videoB = new byte[dataLeng];
 									System.arraycopy(buffer,116,videoB,0,dataLeng);
 
-									onFrame(videoB,0,dataLeng);
+									//onFrame(videoB,0,dataLeng);
 									//MainActivity.mediaCodecEx.InputDataToDecoder(buffer,dataLeng + 116);
-									//MainActivity.mediaCodecEx.InputDataToDecoder(b,dataLeng);
+									MainActivity.mediaCodecEx.InputDataToDecoder(videoB,dataLeng);
 									//Log.i(TAG, "data:++++++++++++++++ ==============="+buffer.length);
 								}else {
 									byte[] vediobuffer = new byte[dataLeng+116];
@@ -789,9 +789,9 @@ public class MainActivity extends Activity {
                     {
                         //outputStream.write(byteBuffer, 0, temp);
 						if (!isInit) {
-							initDecoder();
-//							mediaCodecEx.InitDecoder(mSurfaceView.getHolder().getSurface(),MIME_TYPE,VIDEO_WIDTH,VIDEO_HEIGHT);
-//							mediaCodecEx.bShowing = true;
+							//initDecoder();
+							mediaCodecEx.InitDecoder(mSurfaceView.getHolder().getSurface(),MIME_TYPE,VIDEO_WIDTH,VIDEO_HEIGHT);
+							mediaCodecEx.bShowing = true;
 							isInit = true;
 						}
 
@@ -836,8 +836,8 @@ public class MainActivity extends Activity {
 
 										byte[] videoB = new byte[dataLeng];
 										System.arraycopy(buffer,116,videoB,0,dataLeng);
-
-										onFrame(videoB,0,dataLeng);
+										MainActivity.mediaCodecEx.InputDataToDecoder(videoB,dataLeng);
+										//onFrame(videoB,0,dataLeng);
 
 									}else if(ByteArrayToInt(dataV) == 2){
 										byte[] vediobuffer = new byte[436];
@@ -847,10 +847,12 @@ public class MainActivity extends Activity {
 						             audioindex++;
                        			   if (audioindex == 4){
 									//playVudio(b);
-									   short[] pcm = new short[1312];
-									   com.example.test.G711Code.G711aDecoder(pcm,receveAudio,1312);
+									   short[] pcm = new short[VEDIO_DATALENG];
+									   com.example.test.G711Code.G711aDecoder(pcm,receveAudio,VEDIO_DATALENG);
 									   AudioReader.init();
-									   AudioReader.playAudioTrack(pcm,0,1312);
+									   AudioReader.playAudioTrack(pcm,0,VEDIO_DATALENG);
+									   long a2= SystemClock.elapsedRealtime();
+									   Log.i(TAG, "time:++++++++++++++++ ==============="+(a2-a1)+"========="+cutposition);
 									audioindex = 0;
 										}
 									}
@@ -862,8 +864,7 @@ public class MainActivity extends Activity {
 									}else {
 										cutposition = 0;
 									}
-									long a2= SystemClock.elapsedRealtime();
-									Log.i(TAG, "time:++++++++++++++++ ==============="+(a2-a1)+"========="+cutposition);
+
 								}else {
 									break;
 								}

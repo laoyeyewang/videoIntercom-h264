@@ -13,7 +13,7 @@ public class AudioReader {
 
     public AudioReader(){
         mFrequency = 8000;
-        mChannel = AudioFormat.CHANNEL_OUT_STEREO;
+        mChannel = AudioFormat.CHANNEL_OUT_MONO;
         mSampBit = AudioFormat.ENCODING_PCM_16BIT;
     }
 
@@ -33,7 +33,8 @@ public class AudioReader {
         //STREAM_RING：铃声
         //STREAM_SYSTEM：系统声音
         //STREAM_VOCIE_CALL：电话声音
-        mAudioTrack = new AudioTrack(AudioManager.STREAM_MUSIC,mFrequency,mChannel,mSampBit,minBufSize*2, AudioTrack.MODE_STREAM);
+        int j = getPrimePlaySize();
+        mAudioTrack = new AudioTrack(AudioManager.STREAM_MUSIC,mFrequency,mChannel,mSampBit,minBufSize * 2, AudioTrack.MODE_STREAM);
 
         //AudioTrack中有MODE_STATIC和MODE_STREAM两种分类。
         //STREAM的意思是由用户在应用程序通过write方式把数据一次一次得写到audiotrack中。
@@ -57,13 +58,14 @@ public class AudioReader {
         if (data == null || data.length == 0){return ;}
         try {
             mAudioTrack.write(data, offset, length);
+            mAudioTrack.stop();
         } catch (Exception e) {
             Log.i("MyAudioTrack", "catch exception...");
         }
     }
 
 
-    public int getPrimePlaySize(){
+    public static int getPrimePlaySize(){
         int minBufSize = AudioTrack.getMinBufferSize(mFrequency,
                 mChannel, mSampBit);
         return minBufSize * 2;
