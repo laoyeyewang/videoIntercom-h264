@@ -52,6 +52,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.gson.Gson;
@@ -83,22 +84,17 @@ public class MainActivity extends Activity {
 	private InputStream is = null;
 	private FileInputStream fs = null;
 
-	static public SurfaceView mSurfaceView;
-	private Button mReadButton;
-	private MediaCodec mCodec;
 
-	Thread readFileThread;
-	boolean isInit = false;
     //AudioPlayer audioPlayer;
 
 	// Video Constants
 	private final static String MIME_TYPE = "video/avc"; // H.264 Advanced Video
-	private final static int VIDEO_WIDTH = 640;
-	private final static int VIDEO_HEIGHT = 480;
-	private final static int TIME_INTERNAL = 50;
+	private final static int VIDEO_WIDTH = 1280;
+	private final static int VIDEO_HEIGHT = 720;
+	private final static int TIME_INTERNAL = 33;
 	private final static int HEAD_OFFSET = 512;
-    private final static int VEDIO_DATALENG = 1312;
-	private MyReceiver myReceiver;
+    private final static int VEDIO_DATALENG = 1486;
+//	private MyReceiver myReceiver;
 
 	AudioTrack player=null;
 	int bufferSize=0;//最小缓冲区大小
@@ -109,6 +105,9 @@ public class MainActivity extends Activity {
 	int audioFormat = AudioFormat.ENCODING_PCM_16BIT; //量化位数
 
     byte[] receveAudio = new byte[VEDIO_DATALENG];
+	byte[] vediobuffer = new byte[436];
+
+
     int audioindex = 0;
 
 	TCPServer tcpServer;
@@ -119,11 +118,22 @@ public class MainActivity extends Activity {
 	public static boolean bDecFinished = false;
 
 
-    int maxBufferSize = 1024*200;
+    int maxBufferSize = 1024*80;
     private byte[] soure = new byte[maxBufferSize];
     int cutposition = 0;
 
+  //////////////////
+	public boolean Isling = false;
+	public boolean IsLingStart = false;
+	public boolean IsShow = false;
 
+	static public SurfaceView mSurfaceView;
+	private Button mReadButton;
+	private Button btnRecive;
+	private Button btnRefuse;
+	private MediaCodec mCodec;
+	Thread readFileThread;
+	boolean isInit = false;
 
 
 
@@ -143,6 +153,10 @@ public class MainActivity extends Activity {
 	public String Version = "1.1";
 
 
+	MediaCodec.BufferInfo bufferInfo;
+
+
+
 	//////////////////////////////
 	//socket
 	public static Context context;
@@ -157,36 +171,121 @@ public class MainActivity extends Activity {
 
 
 
-
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		mSurfaceView = (SurfaceView) findViewById(R.id.surfaceView1);
-		//启动服务
-		Intent intent = new Intent(MainActivity.this,UdpReceiver.class);
-		startService(intent);
-		//注册广播接收器
-		myReceiver = new MyReceiver();
-		IntentFilter filter = new IntentFilter();
-		filter.addAction("com.example.weiyuzk.UdpReceiver");
-		registerReceiver(myReceiver, filter);
+		mReadButton = (Button) findViewById(R.id.btn_opendoor);
+		btnRecive = (Button)findViewById(R.id.btn_recive) ;
+		btnRefuse = (Button)findViewById(R.id.btn_refuse) ;
+		mReadButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				IsShow = false;
+				IsLingStart = true;
+
+                // 初始化线程池
+                TCPSend.mThreadPool = Executors.newCachedThreadPool();
+                TCPSend.connectThread();
+
+
+				byte[] headerB = new byte[4144];
+				byte[] nCMD = new byte[4];
+				nCMD = intToByteArray(13);
+				String str = "OPEN_DOOR";
+				byte[] b=str.getBytes();
+				Log.i(TAG, "run: "+b);
+				System.arraycopy(nCMD,0,headerB,0,4);
+				System.arraycopy(b,0,headerB,4,b.length);
+				TCPSend.sendMsgThread(headerB);
+
+
+			}
+		});
+
+		btnRecive.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				IsShow = true;
+				IsLingStart = true;
+
+
+                // 初始化线程池
+                TCPSend.mThreadPool = Executors.newCachedThreadPool();
+                TCPSend.connectThread();
+
+
+				byte[] headerB = new byte[4144];
+				byte[] nCMD = new byte[4];
+				nCMD = intToByteArray(13);
+				String str="TALK_LINK_SEND";
+				byte[] b=str.getBytes();
+				Log.i(TAG, "run: "+b);
+				System.arraycopy(nCMD,0,headerB,0,4);
+				System.arraycopy(b,0,headerB,4,b.length);
+				TCPSend.sendMsgThread(headerB);
+
+				//AudioCapturer.startCapture();
+			}
+		});
+
+		btnRefuse.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+
+				IsLingStart = true;
+				IsShow = false;
+
+
+				// 初始化线程池
+				TCPSend.mThreadPool = Executors.newCachedThreadPool();
+				TCPSend.connectThread();
+
+
+				byte[] headerB = new byte[4144];
+				byte[] nCMD = new byte[4];
+				nCMD = intToByteArray(13);
+				String str = "CANCEL_TALK";
+				byte[] b=str.getBytes();
+				Log.i(TAG, "run: "+b);
+				System.arraycopy(nCMD,0,headerB,0,4);
+				System.arraycopy(b,0,headerB,4,b.length);
+				TCPSend.sendMsgThread(headerB);
+
+				//AudioCapturer.stopCapture();
+			}
+		});
+
+
+//		//启动服务
+//		Intent intent = new Intent(MainActivity.this,UdpReceiver.class);
+//		startService(intent);
+//		//注册广播接收器
+//		myReceiver = new MyReceiver();
+//		IntentFilter filter = new IntentFilter();
+//		filter.addAction("com.example.weiyuzk.UdpReceiver");
+//		registerReceiver(myReceiver, filter);
 
 
 
-		readFileThread = new Thread(readFile);
-		readFileThread.start();
+//		readFileThread = new Thread(readFile);
+//		readFileThread.start();
 
 
 
-		// 初始化线程池
-//		TCPSend.mThreadPool = Executors.newCachedThreadPool();
-//		TCPSend.connectThread();
+
 
 
 		//		tcpServer = new TCPServer(6803);
 //		exec.execute(tcpServer);
+
+
+		/////////////////////////
+		// 初始化线程池
+		TCPSend.mThreadPool = Executors.newCachedThreadPool();
+		TCPSend.connectThread();
+
 
 
 
@@ -196,7 +295,8 @@ public class MainActivity extends Activity {
 		printIpAddress();
 		DNS = DeviceInfo.getLocalDNS();
 
-
+// Get output buffer index
+		bufferInfo = new MediaCodec.BufferInfo();
 
 /////////////////////////////////////////////////////
 		bindReceiver();//注册broadcastReceiver接收器
@@ -406,8 +506,10 @@ public class MainActivity extends Activity {
 		MediaFormat mediaFormat = MediaFormat.createVideoFormat(MIME_TYPE,
 				VIDEO_WIDTH, VIDEO_HEIGHT);
 		mediaFormat.setInteger(MediaFormat.KEY_MAX_INPUT_SIZE, VIDEO_WIDTH * VIDEO_HEIGHT);
+
 		mCodec.configure(mediaFormat, mSurfaceView.getHolder().getSurface(),
 				null, 0);
+
 		mCodec.start();
 	}
 
@@ -416,34 +518,67 @@ public class MainActivity extends Activity {
 
 	int mCount = 0;
 
-	public boolean onFrame(byte[] buf, int offset, int length) {
-		Log.e("Media", "onFrame start");
-		Log.e("Media", "onFrame Thread:" + Thread.currentThread().getId());
-		// Get input buffer index
-		ByteBuffer[] inputBuffers = mCodec.getInputBuffers();
-		int inputBufferIndex = mCodec.dequeueInputBuffer(10);
+	public void onFrame(final byte[] buf, final int offset, final int length) {
+				try {
+					Log.e("Media", "onFrame start");
+					Log.e("Media", "onFrame Thread:" + Thread.currentThread().getId());
+					// Get input buffer index
+					ByteBuffer[] inputBuffers = mCodec.getInputBuffers();
+					int inputBufferIndex = mCodec.dequeueInputBuffer(0);
+					Log.e("Media", "onFrame Thread:" + inputBufferIndex);
+					if (inputBufferIndex >= 0) {
+						ByteBuffer inputBuffer = inputBuffers[inputBufferIndex];
+						inputBuffer.clear();
+						inputBuffer.put(buf, offset, length);
+						mCodec.queueInputBuffer(inputBufferIndex, 0, length, 1000000 * mCount / 30, 0);
+						mCount++;
+					}
 
-		Log.e("Media", "onFrame index:" + inputBufferIndex);
-		if (inputBufferIndex >= 0) {
-			ByteBuffer inputBuffer = inputBuffers[inputBufferIndex];
-			inputBuffer.clear();
-			inputBuffer.put(buf, offset, length);
-			mCodec.queueInputBuffer(inputBufferIndex, 0, length, mCount
-					* TIME_INTERNAL, 0);
-			mCount++;
-		} else {
-			return false;
-		}
+					int outputBufferIndex = mCodec.dequeueOutputBuffer(bufferInfo, 0);
+					//对outputbuffer的处理完后，调用这个函数把buffer重新返回给codec类。
+					if (outputBufferIndex == -3) {
+						Log.e("H264", "AMEDIACODEC__INFO_OUTPUT_BUFFERS_CHANGED");
+					} else if (outputBufferIndex == -2) {
+						Log.e("H264", "AMEDIACODEC__INFO_OUTPUT_FORMAT_CHANGED");
+					} else if (outputBufferIndex == -1) {
+						Log.e("H264", "AMEDIACODEC__INFO_TRY_AGAIN_LATER");
+						//Thread.sleep(1000);
+					}
+//					mCodec.releaseOutputBuffer(outputBufferIndex, true);
+//					if (outputBufferIndex >= 0){
+//						mCodec.releaseOutputBuffer(outputBufferIndex, true);
+//					}
+					Log.e("Media", "onFrame outputBufferIndex:" + outputBufferIndex);
+					while (outputBufferIndex >= 0) {
+						Log.e("Media", " outputBufferIndex:" + outputBufferIndex);
+						mCodec.releaseOutputBuffer(outputBufferIndex, true);
+						outputBufferIndex = mCodec.dequeueOutputBuffer(bufferInfo, 0);
+					}
 
-		// Get output buffer index
-		MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
-		int outputBufferIndex = mCodec.dequeueOutputBuffer(bufferInfo, 10);
-		while (outputBufferIndex >= 0) {
-			mCodec.releaseOutputBuffer(outputBufferIndex, true);
-			outputBufferIndex = mCodec.dequeueOutputBuffer(bufferInfo, 0);
-		}
-		Log.e("Media", "onFrame end");
-		return true;
+//			mCodec.stop();
+//			mCodec.release();
+
+
+//			int outputBufferIndex = mCodec.dequeueOutputBuffer(bufferInfo, 0);
+//			Log.e("tag", "===================== "+outputBufferIndex);
+//			while (outputBufferIndex >= 0) {
+//				Log.e("Media", "11");
+//				mCodec.releaseOutputBuffer(outputBufferIndex, true);
+//				Log.e("Media", "12");
+//				outputBufferIndex = mCodec.dequeueOutputBuffer(bufferInfo, 0);
+//
+//				Log.i(TAG, "outputBufferIndex++++++++++++++++++++++++++++++++++++++"+outputBufferIndex);
+//				Log.e("Media", "13");
+//			}
+
+				}catch (Exception e){
+
+				}
+
+				Log.e("Media", "onFrame end");
+
+
+
 	}
 
 
@@ -495,52 +630,52 @@ public class MainActivity extends Activity {
 
 
 
-	public class MyReceiver extends BroadcastReceiver {
-			public void onReceive(Context context, Intent intent){
-				try {
-
-                    if (!isInit) {
-                        initDecoder();
-                        isInit = true;
-                    }
-					Bundle bundle = intent.getExtras();
-					byte[] count = bundle.getByteArray("count");
-					Log.i(TAG, "onReceive: " + count.length);
-					System.out.print(count.length);
-					byte[] dataV = new byte[4];
-					System.arraycopy(count,100,dataV,0,4);
-					Log.i(TAG, "onReceive: "+ByteArrayToInt(dataV));
-
-					if (ByteArrayToInt(dataV) == 1){
-                        byte[] dataB = new byte[count.length-116];
-                        System.arraycopy(count,116,dataB,0,count.length-116);
-						int datacount = dataB.length;
-						Log.i(TAG, "onReceive: " + datacount);
-						System.out.print(datacount);
-						onFrame(dataB, 0, datacount);
-						Log.i(TAG, "onReceive: "+count);
-					}else if (ByteArrayToInt(dataV) == 2) {
-                       byte[] dataA = new byte[count.length-116];
-                        System.arraycopy(count,116,dataA,0,count.length-116);
-                        int dataleng = dataA.length;
-//						readFileThread = new Thread(readFile);
-//						readFileThread.start();
-
-//						System.arraycopy(dataA,0,receveAudio,dataleng*audioindex,dataleng);
-//						audioindex++;
-//                        if (audioindex == 4){
-//							playVudio(receveAudio);
-//							//receveAudio = new byte[1312];
-//							audioindex = 0;
-//						}
-
-                    }
-
-				}catch (Exception e){
-					Log.i(TAG, "onReceive: "+e);
-				}
-			}
-	}
+//	public class MyReceiver extends BroadcastReceiver {
+//			public void onReceive(Context context, Intent intent){
+//				try {
+//
+//                    if (!isInit) {
+//                        initDecoder();
+//                        isInit = true;
+//                    }
+//					Bundle bundle = intent.getExtras();
+//					byte[] count = bundle.getByteArray("count");
+//					Log.i(TAG, "onReceive: " + count.length);
+//					System.out.print(count.length);
+//					byte[] dataV = new byte[4];
+//					System.arraycopy(count,100,dataV,0,4);
+//					Log.i(TAG, "onReceive: "+ByteArrayToInt(dataV));
+//
+//					if (ByteArrayToInt(dataV) == 1){
+//                        byte[] dataB = new byte[count.length-116];
+//                        System.arraycopy(count,116,dataB,0,count.length-116);
+//						int datacount = dataB.length;
+//						Log.i(TAG, "onReceive: " + datacount);
+//						System.out.print(datacount);
+//						onFrame(dataB, 0, datacount);
+//						Log.i(TAG, "onReceive: "+count);
+//					}else if (ByteArrayToInt(dataV) == 2) {
+//                       byte[] dataA = new byte[count.length-116];
+//                        System.arraycopy(count,116,dataA,0,count.length-116);
+//                        int dataleng = dataA.length;
+////						readFileThread = new Thread(readFile);
+////						readFileThread.start();
+//
+////						System.arraycopy(dataA,0,receveAudio,dataleng*audioindex,dataleng);
+////						audioindex++;
+////                        if (audioindex == 4){
+////							playVudio(receveAudio);
+////							//receveAudio = new byte[1312];
+////							audioindex = 0;
+////						}
+//
+//                    }
+//
+//				}catch (Exception e){
+//					Log.i(TAG, "onReceive: "+e);
+//				}
+//			}
+//	}
 
 
 
@@ -567,7 +702,7 @@ public class MainActivity extends Activity {
 		public void run() {
 			DataInputStream dis=null;
 			try {
-				dis = new DataInputStream(new BufferedInputStream(getResources().getAssets().open("welcome.wav")));
+				dis = new DataInputStream(new BufferedInputStream(getResources().getAssets().open("lingling.wav")));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -593,19 +728,31 @@ public class MainActivity extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				short[] pcm = new short[1312];
-				com.example.test.G711Code.G711aDecoder(pcm,data,1312);
+				short[] pcm = new short[bufferSizeInBytes];
+				G711Code.G711aDecoder(pcm,data,bufferSizeInBytes);
 				//player.write(data,0,data.length);
 				player.write(pcm,0,pcm.length);
 				if(i!=bufferSizeInBytes) //表示读取完了
 				{
-					player.stop();//停止播放
-					player.release();//释放资源
-					break;
+					if (IsLingStart == false){
+						player.stop();//停止播放
+						player.release();//释放资源
+						readFileThread = new Thread(readFile);
+						readFileThread.start();
+						break;
+
+					}else {
+						player.stop();//停止播放
+						player.release();//释放资源
+						break;
+					}
+
 				}
 			}
 		}
 	};
+
+
 	boolean a  = false;
 	int bufferSizeInBytes;
 	public void playVudio(byte[] b){
@@ -625,7 +772,7 @@ public class MainActivity extends Activity {
 			byte[] data =new byte [bufferSizeInBytes];
 			System.arraycopy(b,0,data,0,b.length);
 			short[] pcm = new short[bufferSizeInBytes];
-			com.example.test.G711Code.G711aDecoder(pcm,data,bufferSizeInBytes);
+			G711Code.G711aDecoder(pcm,data,bufferSizeInBytes);
 			//player.write(data,0,data.length);
 			player.write(pcm,0,pcm.length);
 		}catch (Exception e){
@@ -679,6 +826,10 @@ public class MainActivity extends Activity {
 							mediaCodecEx.bShowing = true;
 							isInit = true;
 						}
+						if (Isling == false){
+
+							Isling = true;
+						}
 
 						System.arraycopy(by,0,data,0,dataL);
 
@@ -730,25 +881,12 @@ public class MainActivity extends Activity {
 								}else {
 									cutposition = 0;
 								}
-								long a2= SystemClock.elapsedRealtime();
-								//Log.i(TAG, "time:++++++++++++++++ ==============="+(a2-a1)+"========="+cutposition);
+
 								}else {
 									break;
 								}
 							}
-
 						}
-
-
-
-
-
-
-
-
-
-
-
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -756,6 +894,7 @@ public class MainActivity extends Activity {
 			}
 		}.start();
 	}
+
 
 
 	/**
@@ -767,8 +906,9 @@ public class MainActivity extends Activity {
             @Override
             public void run() {
                 // TODO Auto-generated method stub
-                super.run();
+                //super.run();
                 ServerSocket serverSocket=null;
+
                 try{
                     //创建ServerSocket对象监听PORT端口
                     serverSocket = new ServerSocket(6803);
@@ -781,102 +921,121 @@ public class MainActivity extends Activity {
                     //获得输出流
                     OutputStream outputStream = socket.getOutputStream();
 					byte buff[]  = new byte[1024 * 8];
+					byte[] dataV = new byte[4];
+					short[] pcm = new short[VEDIO_DATALENG];
                     int rcvLen = 0;
-                    String s;
+					int dataLeng = 0;
+					byte[] data = null;
 
                     //读取接收到的数据
-                    while((rcvLen = is.read(buff))!=-1)
-                    {
-                        //outputStream.write(byteBuffer, 0, temp);
-						if (!isInit) {
-							//initDecoder();
-							mediaCodecEx.InitDecoder(mSurfaceView.getHolder().getSurface(),MIME_TYPE,VIDEO_WIDTH,VIDEO_HEIGHT);
-							mediaCodecEx.bShowing = true;
-							isInit = true;
+                    while((rcvLen = is.read(buff))!=-1) {
+
+						if (Isling == false) {
+							readFileThread = new Thread(readFile);
+							readFileThread.start();
+							Isling = true;
 						}
+						if (IsShow == true) {
+							//outputStream.write(byteBuffer, 0, temp);
+							if (!isInit) {
+								initDecoder();
+//							mediaCodecEx.InitDecoder(mSurfaceView.getHolder().getSurface(),MIME_TYPE,VIDEO_WIDTH,VIDEO_HEIGHT);
+//							mediaCodecEx.bShowing = true;
+								AudioReader.init();
+								isInit = true;
+							}
+							////////////////
+							data = new byte[rcvLen];
+//
+							System.arraycopy(buff, 0, data, 0, rcvLen);
+							if ((cutposition + rcvLen) > maxBufferSize) {
+								cutposition = 0;
+							}
+							System.arraycopy(data, 0, soure, cutposition, rcvLen);
+							cutposition = cutposition + rcvLen;
+							///////////////////////////////////
+							int nlastSorftLeng = 0;
+							long a1 = SystemClock.elapsedRealtime();
+							for (int i = 0; i < cutposition; i++) {
+								dataLeng = checkHeadLeng(soure, i);
 
-						//                            if ((rcvLen = is.read(buff)) != -1){
+								//if (dataLeng > 0 && (dataLeng + i) <= maxBufferSize){
+								if (dataLeng > 0 && (dataLeng + i) <= cutposition) {
+									//////////////////
+									byte[] buffer = new byte[dataLeng + 116];
 
-						// rcvMsg = new String(buff,0,rcvLen);
-						//Log.i(TAG, "run:收到消息: " + rcvMsg);
-						//Log.i(TAG, "run: ++++++++++++++++" + rcvLen);
-						byte[] data = new byte[rcvLen];
-						System.arraycopy(buff,0,data,0,rcvLen);
+									System.arraycopy(soure, i, buffer, 0, dataLeng + 116);
+									nlastSorftLeng = i + 116 + dataLeng;
 
-						if ((cutposition + rcvLen) > maxBufferSize) {
-							cutposition = 0;
-						}
-						System.arraycopy(data, 0, soure, cutposition, rcvLen);
-						cutposition = cutposition + rcvLen;
-						Log.i(TAG, "run: ====================="+cutposition);
-						///////////////////////////////////
-						int nlastSorftLeng = 0;
-						long a1= SystemClock.elapsedRealtime();
-						for (int i = 0; i < cutposition; i++) {
+									if (cutposition >= nlastSorftLeng) {
+										i += (dataLeng + 115);
 
-							int dataLeng = checkHeadLeng(soure, i);
-							if (dataLeng > 0 && (dataLeng + i) <= maxBufferSize){
-								byte[] buffer = new byte[dataLeng+116];
-								System.arraycopy(soure,i,buffer,0,dataLeng + 116);
-								nlastSorftLeng = i + 116 + dataLeng;
+										System.arraycopy(buffer, 100, dataV, 0, 4);
+
+										if (ByteArrayToInt(dataV) == 1) {
+											/////////////////////
+											byte[] videoB = new byte[dataLeng];
+
+											System.arraycopy(buffer, 116, videoB, 0, dataLeng);
+//											MainActivity.mediaCodecEx.InputDataToDecoder(videoB,dataLeng);
+											Log.i(TAG, "当前长度---------------------------------"+ dataLeng+"===="+cutposition+"*******"+videoB.length);
+
+											onFrame(videoB, 0, dataLeng);
 
 
-								if (cutposition >= nlastSorftLeng){
-									Log.i(TAG, "run: -------------------------"+cutposition);
-									Log.i(TAG, "run: +++++++++++++++++++++++++"+nlastSorftLeng);
-									Log.i(TAG, "run: {{{{{{{{{{{{{{{{{{{{"+dataLeng);
-									i += (dataLeng + 116);
+										} else if (ByteArrayToInt(dataV) == 2) {
+											System.arraycopy(soure, 0, vediobuffer, 0, dataLeng + 116);
+											System.arraycopy(vediobuffer, 116, receveAudio, 0 + dataLeng * audioindex, dataLeng);
+											audioindex++;
+											if (audioindex == 4) {
 
-									byte[] dataV = new byte[4];
-									System.arraycopy(buffer,100,dataV,0,4);
-									Log.i(TAG, "onReceive: ----------------------"+ByteArrayToInt(dataV));
-									Log.i(TAG, "run: ");
-
-									if (ByteArrayToInt(dataV) == 1){
-
-										byte[] videoB = new byte[dataLeng];
-										System.arraycopy(buffer,116,videoB,0,dataLeng);
-										MainActivity.mediaCodecEx.InputDataToDecoder(videoB,dataLeng);
-										//onFrame(videoB,0,dataLeng);
-
-									}else if(ByteArrayToInt(dataV) == 2){
-										byte[] vediobuffer = new byte[436];
-										//System.arraycopy(soure,i,vediobuffer,0,dataLeng + 116);
-										System.arraycopy(soure,0,vediobuffer,0,dataLeng+116);
-										System.arraycopy(vediobuffer,116,receveAudio,0+dataLeng * audioindex,dataLeng);
-						             audioindex++;
-                       			   if (audioindex == 4){
-									//playVudio(b);
-									   short[] pcm = new short[VEDIO_DATALENG];
-									   com.example.test.G711Code.G711aDecoder(pcm,receveAudio,VEDIO_DATALENG);
-									   AudioReader.init();
-									   AudioReader.playAudioTrack(pcm,0,VEDIO_DATALENG);
-									   long a2= SystemClock.elapsedRealtime();
-									   Log.i(TAG, "time:++++++++++++++++ ==============="+(a2-a1)+"========="+cutposition);
-									audioindex = 0;
+												//vedioRecode(pcm);
+												audioindex = 0;
+											}
 										}
-									}
-									if (cutposition - nlastSorftLeng >= 0) {
-										byte[] newData = new byte[cutposition - nlastSorftLeng];
-										System.arraycopy(soure, nlastSorftLeng, newData, 0, cutposition - nlastSorftLeng);
-										System.arraycopy(newData, 0, soure, 0, cutposition - nlastSorftLeng);
-										cutposition -= nlastSorftLeng;
-									}else {
-										cutposition = 0;
-									}
+										if (cutposition - nlastSorftLeng >= 0) {
+											//////////////////////
+											byte[] newData = new byte[cutposition - nlastSorftLeng];
 
-								}else {
+											System.arraycopy(soure, nlastSorftLeng, newData, 0, cutposition - nlastSorftLeng);
+											System.arraycopy(newData, 0, soure, 0, cutposition - nlastSorftLeng);
+											cutposition -= nlastSorftLeng;
+										} else {
+											cutposition = 0;
+										}
+									} else {
+										break;
+									}
+								} else {
 									break;
+								}
+								try {
+//								    if (dataLeng > 30000 && dataLeng < 40000){
+//										Log.i(TAG, "run: **********************************"+dataLeng);
+//                                        Thread.sleep(50);
+//                                    }else if (dataLeng >= 40000 && dataLeng < 50000){
+//										Log.i(TAG, "run: $$$$$$$$$$$$$$$$$$$$$$$$$$$$"+dataLeng);
+//										Thread.sleep(100);
+//									}else if (dataLeng > 50000){
+//										Thread.sleep(500);
+//										Log.i(TAG, "run: &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"+dataLeng);
+//									}else {
+                                        Thread.sleep(5);
+//                                    }
+								} catch (InterruptedException e) {
+									e.printStackTrace();
 								}
 							}
 
-						}
+							long a2 = SystemClock.elapsedRealtime();
+							Log.i(TAG, "time:++++++++++++++++ ===============" + (a2 - a1) + "=========" + cutposition);
+//							try {
+//									Thread.sleep(5);
+//							} catch (InterruptedException e) {
+//								e.printStackTrace();
+//							}
 
 
-						try {
-							Thread.sleep(1);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
 						}
 
 
@@ -888,10 +1047,30 @@ public class MainActivity extends Activity {
 
                 }catch(IOException e){
                     e.printStackTrace();
-                }
+                }finally {
+
+				}
             }
         }.start();
     }
+
+public void vedioRecode(final short[] pcm){
+		new Thread(){
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				G711Code.G711aDecoder(pcm,receveAudio,VEDIO_DATALENG);
+				AudioReader.playAudioTrack(pcm,0,VEDIO_DATALENG);
+			}
+		}.start();
+}
+
+
+
+
+
+
+
 
 
     /**
@@ -950,6 +1129,14 @@ public class MainActivity extends Activity {
 				| ((bArr[2] & 0xff) << 16)
 				| ((bArr[1] & 0xff) << 8)
 				| ((bArr[0] & 0xff) << 0)));
+	}
+	public static byte[] intToByteArray(int value) {
+		byte[] src = new byte[4];
+		src[3] =  (byte) ((value>>24) & 0xFF);
+		src[2] =  (byte) ((value>>16) & 0xFF);
+		src[1] =  (byte) ((value>>8) & 0xFF);
+		src[0] =  (byte) (value & 0xFF);
+		return src;
 	}
 
 	/**

@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jun 13 17:07:36 CST 2018
+#Wed Jun 20 20:55:13 CST 2018
 2.base=/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/assets/debug
 5.set=ASSET
 0.path=1280_720.h264

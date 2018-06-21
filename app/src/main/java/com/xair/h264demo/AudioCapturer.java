@@ -63,7 +63,7 @@ public class AudioCapturer {
         Log.d(TAG, "Start audio capture success !");
         return true;
     }
-    public void stopCapture() {
+    public static void stopCapture() {
         if (!mIsCaptureStarted) {
             return;
         }
@@ -102,7 +102,7 @@ public class AudioCapturer {
                         mAudioFrameCapturedListener.onAudioFrameCaptured(buffer);
                     }
                     byte[] data = new byte[320];
-                    com.example.test.G711Code.G711aEncoder(buffer,data,ret);
+                   G711Code.G711aEncoder(buffer,data,ret);
                     //Log.d(TAG , "OK, Captured "+ret+" bytes !");
                     TCPSend.sendMsgThread(data);
                 }

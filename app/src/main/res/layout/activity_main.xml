@@ -11,20 +11,37 @@
     </com.xair.xaremotecam.media.VideoSurfaceView> -->
 
 
-
     <SurfaceView
         android:id="@+id/surfaceView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/btn_readfile"
+        android:id="@+id/btn_opendoor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="Start" />
+        android:text="开门" />
+
+    <Button
+        android:id="@+id/btn_recive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/btn_opendoor"
+        android:text="接听"
+        android:layout_toRightOf="@+id/btn_opendoor" />
+
+    <Button
+        android:id="@+id/btn_refuse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/btn_recive"
+        android:text="拒绝"
+        android:layout_toRightOf="@+id/btn_recive" />
     
 </RelativeLayout>

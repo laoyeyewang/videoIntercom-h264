@@ -202,7 +202,7 @@ public class MediaCodecEx extends Object {
 					return;
 			}
 		}
-		String str = "InputDataToDecoder：" + length + "Data:" + input[0] + input[1] + input[2] + input[3];
+		//String str = "InputDataToDecoder：" + length + "Data:" + input[0] + input[1] + input[2] + input[3];
 		//OutputDebugString(str);
 		if (_surface == null)
 			return;
@@ -213,19 +213,21 @@ public class MediaCodecEx extends Object {
 	//	OutputDebugString("InputDataToDecoder try decodeing");
 		try {
 			ByteBuffer[] inputBuffers = _decoder.getInputBuffers();
-			if(inputBuffers==null)
+			if(inputBuffers==null) {
 				return;
-			// int inputBufferIndex = _decoder.dequeueInputBuffer(-1);
-			int inputBufferIndex = _decoder.dequeueInputBuffer(150);// 缓冲150ms
+			}
+			 int inputBufferIndex = _decoder.dequeueInputBuffer(-1);
+			//int inputBufferIndex = _decoder.dequeueInputBuffer(150);// 缓冲150ms
 			if (inputBufferIndex >= 0) {
 				ByteBuffer inputBuffer = inputBuffers[inputBufferIndex];
 				if(inputBuffer==null)
 					return;
 				long timestamp = mFrameIndex++ * 1000000 / FRAME_RATE;
-				Log.d(TAG, "offerDecoder timestamp: " + timestamp + " inputSize: " + length + " bytes");
 				inputBuffer.clear();
 				inputBuffer.put(input, 0, length);
 				_decoder.queueInputBuffer(inputBufferIndex, 0, length, timestamp, 0);
+				inputBuffer.clear();
+				Log.d(TAG, "offerDecoder timestamp: " + timestamp + " inputSize: " + length + " bytes");
 			}
 		} catch (Throwable t) {
 			t.printStackTrace();

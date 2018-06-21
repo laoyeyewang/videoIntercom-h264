@@ -1,4 +1,4 @@
-#Wed Jun 06 10:07:52 CST 2018
-base.0=/Users/wangheng/Documents/H264Demo1/app/build/intermediates/transforms/dexMerger/release/0
+#Tue Jun 19 17:45:15 CST 2018
+base.0=/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/transforms/dexMerger/release/0
 path.0=classes.dex
 renamed.0=classes.dex

@@ -58,7 +58,6 @@ public class AudioReader {
         if (data == null || data.length == 0){return ;}
         try {
             mAudioTrack.write(data, offset, length);
-            mAudioTrack.stop();
         } catch (Exception e) {
             Log.i("MyAudioTrack", "catch exception...");
         }
