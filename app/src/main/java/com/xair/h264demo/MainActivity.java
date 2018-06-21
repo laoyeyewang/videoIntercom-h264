@@ -1009,31 +1009,15 @@ public class MainActivity extends Activity {
 								} else {
 									break;
 								}
-								try {
-//								    if (dataLeng > 30000 && dataLeng < 40000){
-//										Log.i(TAG, "run: **********************************"+dataLeng);
-//                                        Thread.sleep(50);
-//                                    }else if (dataLeng >= 40000 && dataLeng < 50000){
-//										Log.i(TAG, "run: $$$$$$$$$$$$$$$$$$$$$$$$$$$$"+dataLeng);
-//										Thread.sleep(100);
-//									}else if (dataLeng > 50000){
-//										Thread.sleep(500);
-//										Log.i(TAG, "run: &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"+dataLeng);
-//									}else {
-                                        Thread.sleep(5);
-//                                    }
-								} catch (InterruptedException e) {
-									e.printStackTrace();
-								}
 							}
 
 							long a2 = SystemClock.elapsedRealtime();
 							Log.i(TAG, "time:++++++++++++++++ ===============" + (a2 - a1) + "=========" + cutposition);
-//							try {
-//									Thread.sleep(5);
-//							} catch (InterruptedException e) {
-//								e.printStackTrace();
-//							}
+							try {
+									Thread.sleep(5);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 
 
 						}
