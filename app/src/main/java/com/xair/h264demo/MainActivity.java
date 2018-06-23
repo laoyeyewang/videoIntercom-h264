@@ -1,19 +1,15 @@
 package com.xair.h264demo;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.InterfaceAddress;
@@ -23,23 +19,17 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioRecord;
@@ -48,15 +38,22 @@ import android.media.MediaCodec;
 import android.media.MediaFormat;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.telephony.TelephonyManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.xair.h264demo.TCP.TCPSend;
+import com.xair.h264demo.TCP.TCPServer;
+import com.xair.h264demo.Tool.Audio.AudioReader;
+import com.xair.h264demo.Tool.Code.G711Code;
+import com.xair.h264demo.Tool.Code.MediaCodecEx;
+import com.xair.h264demo.Tool.SQL.RoomDoa;
+import com.xair.h264demo.Tool.SQL.RoomInfo;
 import com.xair.h264demo.UDP.UDPClient;
+import com.xair.h264demo.UDP.UdpReceiver;
 import com.xair.h264demo.UDP.UdpServer;
 import com.xair.h264demo.deviceInfo.DeviceInfo;
 import com.xair.h264demo.entity.UDPSend;
@@ -126,6 +123,9 @@ public class MainActivity extends Activity {
 	public boolean Isling = false;
 	public boolean IsLingStart = false;
 	public boolean IsShow = false;
+	public int lingCount = 0;
+
+
 
 	static public SurfaceView mSurfaceView;
 	private Button mReadButton;
@@ -150,6 +150,7 @@ public class MainActivity extends Activity {
 	public String Danyuan = "03";
 	public String Fangjian = "0103";
 	public String Name = "android-室内";
+	public String Password = "123456";
 	public String Version = "1.1";
 
 
@@ -169,9 +170,11 @@ public class MainActivity extends Activity {
 	//UDPServer
 	private UdpServer udpServer = null;
 
+///////////////////////////////////
+	//SQList
+    private RoomDoa roomDoa;
 
-
-	@Override
+    @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -226,7 +229,44 @@ public class MainActivity extends Activity {
 				System.arraycopy(b,0,headerB,4,b.length);
 				TCPSend.sendMsgThread(headerB);
 
+//				RoomInfo roomInfo = new RoomInfo();
+//				roomInfo.setDeviceType("1");
+//				roomInfo.setID("1");
+//				roomInfo.setIP("1");
+//				roomInfo.setMASK("1");
+//				roomInfo.setGATE("1");
+//				roomInfo.setDNS("1");
+//				roomInfo.setLouhao("1");
+//				roomInfo.setDanyuan("1");
+//				roomInfo.setFangjian("1");
+//				roomInfo.setName("1");
+//				roomInfo.setPassword("1");
+//				roomInfo.setVersion("1");
+//				roomDoa.insert(roomInfo);
+//				Toast.makeText(MainActivity.this,"新增成功",Toast.LENGTH_SHORT).show();
+
+
+				RoomInfo user = roomDoa.searchUser("1");
+				user.setDeviceType(DeviceType);
+				user.setID(ID);
+				user.setIP(IP);
+				user.setMASK(MASK);
+				user.setGATE(GATE);
+				user.setDNS(DNS);
+				user.setLouhao(Louhao);
+				user.setDanyuan(Danyuan);
+				user.setFangjian(Fangjian);
+				user.setName(Name);
+				user.setPassword(Password);
+				user.setVersion(Version);
+				roomDoa.update(user);
+				Toast.makeText(MainActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
+
+				RoomInfo roomInfo = roomDoa.searchUser("1");
+//				List<RoomInfo> list= roomDoa.search();
+				Toast.makeText(MainActivity.this,"查询成功"+roomInfo,Toast.LENGTH_SHORT).show();
 				//AudioCapturer.startCapture();
+
 			}
 		});
 
@@ -283,17 +323,21 @@ public class MainActivity extends Activity {
 
 		/////////////////////////
 		// 初始化线程池
-		TCPSend.mThreadPool = Executors.newCachedThreadPool();
-		TCPSend.connectThread();
+//		TCPSend.mThreadPool = Executors.newCachedThreadPool();
+//		TCPSend.connectThread();
 
 
 
 
 		/////////////////////////////////////
 		//获取配置
-		ID = DeviceInfo.getUUID();
+		//ID = DeviceInfo.getUUID();
+		String[] temp =  DeviceInfo.getUUID().split("-");
+		ID = temp[temp.length - 1];
 		printIpAddress();
 		DNS = DeviceInfo.getLocalDNS();
+		roomDoa=new RoomDoa(this);
+
 
 // Get output buffer index
 		bufferInfo = new MediaCodec.BufferInfo();
@@ -312,9 +356,59 @@ public class MainActivity extends Activity {
         tcpServerData();
 		//UDPServerData();
 
+
+		//初始化存储空间
+		  initSQl();
+
 		mediaCodecEx = new MediaCodecEx();
 		mediaCodecEx.InitBuffer();
 	}
+
+	/**
+	 *初始化存储空间
+	 */
+
+	public void initSQl(){
+		RoomInfo roomInfo1 = roomDoa.searchUser("1");
+		if(roomInfo1 == null) {
+			RoomInfo roomInfo = new RoomInfo();
+			roomInfo.setDeviceType("1");
+			roomInfo.setID("1");
+			roomInfo.setIP("1");
+			roomInfo.setMASK("1");
+			roomInfo.setGATE("1");
+			roomInfo.setDNS("1");
+			roomInfo.setLouhao("1");
+			roomInfo.setDanyuan("1");
+			roomInfo.setFangjian("1");
+			roomInfo.setName("1");
+			roomInfo.setPassword("1");
+			roomInfo.setVersion("1");
+			roomDoa.insert(roomInfo);
+			Toast.makeText(MainActivity.this, "新增成功", Toast.LENGTH_SHORT).show();
+		}
+		RoomInfo roomInfo2 = roomDoa.searchUser("2");
+		if(roomInfo1 == null) {
+			RoomInfo roomInfo = new RoomInfo();
+			roomInfo.setDeviceType("1");
+			roomInfo.setID("1");
+			roomInfo.setIP("1");
+			roomInfo.setMASK("1");
+			roomInfo.setGATE("1");
+			roomInfo.setDNS("1");
+			roomInfo.setLouhao("1");
+			roomInfo.setDanyuan("1");
+			roomInfo.setFangjian("1");
+			roomInfo.setName("1");
+			roomInfo.setPassword("1");
+			roomInfo.setVersion("1");
+			roomDoa.insert(roomInfo);
+			Toast.makeText(MainActivity.this, "新增成功", Toast.LENGTH_SHORT).show();
+		}
+	}
+
+
+
 
 	/**
 	 * udp 客户端初始化
@@ -338,6 +432,7 @@ public class MainActivity extends Activity {
 				udpSend.setDanyuan(Danyuan);
 				udpSend.setFangjian(Fangjian);
 				udpSend.setName(Name);
+				udpSend.setPassword(Password);
 				udpSend.setVersion(Version);
 
 				String udpSendMessage = gson.toJson(udpSend);//把对象转为JSON格式的字符串
@@ -378,12 +473,37 @@ public class MainActivity extends Activity {
 			String mAction = intent.getAction();
 
 			if ("udpServer".equals(mAction)) {
-				String udpdata = intent.getStringExtra("udpServer");
+				final String udpdata = intent.getStringExtra("udpServer");
 				JSONObject jsonObject = null;
 				try {
 					jsonObject = new JSONObject(udpdata);
 					Log.i(TAG, "onReceive: +++++++++++++++++++++++++++++++++++++++++++++"+jsonObject);
 					if (jsonObject.optString("DeviceType").equals("VideoTalkIpc")){
+						Thread thread = new Thread(new Runnable() {
+							@Override
+							public void run() {
+//								RoomInfo user = roomDoa.searchUser("2");
+//								user.setDeviceType(DeviceType);
+//								user.setID(ID);
+//								user.setIP(IP);
+//								user.setMASK(MASK);
+//								user.setGATE(GATE);
+//								user.setDNS(DNS);
+//								user.setLouhao(Louhao);
+//								user.setDanyuan(Danyuan);
+//								user.setFangjian(Fangjian);
+//								user.setName(Name);
+//								user.setPassword(Password);
+//								user.setVersion(Version);
+//								roomDoa.update(user);
+//								Toast.makeText(MainActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
+//
+//								RoomInfo roomInfo = roomDoa.searchUser("2");
+////				List<RoomInfo> list= roomDoa.search();
+//								Toast.makeText(MainActivity.this,"查询成功"+roomInfo,Toast.LENGTH_SHORT).show();
+							}
+						});
+						thread.start();
 
 					}else if(jsonObject.optString("Action").equals("SeekDevice")){
 						Log.i(TAG, "onReceive: "+jsonObject);
@@ -402,10 +522,11 @@ public class MainActivity extends Activity {
 								udpSend.setDanyuan(Danyuan);
 								udpSend.setFangjian(Fangjian);
 								udpSend.setName(Name);
+								udpSend.setPassword(Password);
 								udpSend.setVersion(Version);
 
 								String udpSendMessage = gson.toJson(udpSend);//把对象转为JSON格式的字符串
-								Log.i(TAG, "run: "+udpSendMessage);
+								Log.i(TAG, "run:---------==========-------- "+udpSendMessage);
 
 								udpClient.send(udpSendMessage);
 							}
@@ -520,12 +641,12 @@ public class MainActivity extends Activity {
 
 	public void onFrame(final byte[] buf, final int offset, final int length) {
 				try {
-					Log.e("Media", "onFrame start");
-					Log.e("Media", "onFrame Thread:" + Thread.currentThread().getId());
+//					Log.e("Media", "onFrame start");
+//					Log.e("Media", "onFrame Thread:" + Thread.currentThread().getId());
 					// Get input buffer index
 					ByteBuffer[] inputBuffers = mCodec.getInputBuffers();
 					int inputBufferIndex = mCodec.dequeueInputBuffer(0);
-					Log.e("Media", "onFrame Thread:" + inputBufferIndex);
+//					Log.e("Media", "onFrame Thread:" + inputBufferIndex);
 					if (inputBufferIndex >= 0) {
 						ByteBuffer inputBuffer = inputBuffers[inputBufferIndex];
 						inputBuffer.clear();
@@ -548,9 +669,8 @@ public class MainActivity extends Activity {
 //					if (outputBufferIndex >= 0){
 //						mCodec.releaseOutputBuffer(outputBufferIndex, true);
 //					}
-					Log.e("Media", "onFrame outputBufferIndex:" + outputBufferIndex);
+
 					while (outputBufferIndex >= 0) {
-						Log.e("Media", " outputBufferIndex:" + outputBufferIndex);
 						mCodec.releaseOutputBuffer(outputBufferIndex, true);
 						outputBufferIndex = mCodec.dequeueOutputBuffer(bufferInfo, 0);
 					}
@@ -575,7 +695,7 @@ public class MainActivity extends Activity {
 
 				}
 
-				Log.e("Media", "onFrame end");
+				//Log.e("Media", "onFrame end");
 
 
 
@@ -735,6 +855,11 @@ public class MainActivity extends Activity {
 				if(i!=bufferSizeInBytes) //表示读取完了
 				{
 					if (IsLingStart == false){
+						lingCount++;
+						if (lingCount>9){
+							lingCount = 0;
+							IsLingStart = true;
+						}
 						player.stop();//停止播放
 						player.release();//释放资源
 						readFileThread = new Thread(readFile);
@@ -978,7 +1103,7 @@ public class MainActivity extends Activity {
 
 											System.arraycopy(buffer, 116, videoB, 0, dataLeng);
 //											MainActivity.mediaCodecEx.InputDataToDecoder(videoB,dataLeng);
-											Log.i(TAG, "当前长度---------------------------------"+ dataLeng+"===="+cutposition+"*******"+videoB.length);
+//											Log.i(TAG, "当前长度---------------------------------"+ dataLeng+"===="+cutposition+"*******"+videoB.length);
 
 											onFrame(videoB, 0, dataLeng);
 
@@ -989,7 +1114,7 @@ public class MainActivity extends Activity {
 											audioindex++;
 											if (audioindex == 4) {
 
-												//vedioRecode(pcm);
+												vedioRecode(pcm);
 												audioindex = 0;
 											}
 										}
@@ -1012,7 +1137,7 @@ public class MainActivity extends Activity {
 							}
 
 							long a2 = SystemClock.elapsedRealtime();
-							Log.i(TAG, "time:++++++++++++++++ ===============" + (a2 - a1) + "=========" + cutposition);
+//							Log.i(TAG, "time:++++++++++++++++ ===============" + (a2 - a1) + "=========" + cutposition);
 							try {
 									Thread.sleep(5);
 							} catch (InterruptedException e) {

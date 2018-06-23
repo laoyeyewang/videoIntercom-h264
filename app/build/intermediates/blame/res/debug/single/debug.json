@@ -4,6 +4,10 @@
         "source": "/Users/wangheng/Documents/H264/H264Demo1/app/src/main/res/raw/filter_fs.txt"
     },
     {
+        "merged": "/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/res/merged/debug/layout_wyav_home.xml.flat",
+        "source": "/Users/wangheng/Documents/H264/H264Demo1/app/src/main/res/layout/wyav_home.xml"
+    },
+    {
         "merged": "/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/res/merged/debug/drawable-xhdpi_ic_launcher.png.flat",
         "source": "/Users/wangheng/Documents/H264/H264Demo1/app/src/main/res/drawable-xhdpi/ic_launcher.png"
     },
@@ -34,6 +38,10 @@
     {
         "merged": "/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/res/merged/debug/menu_main.xml.flat",
         "source": "/Users/wangheng/Documents/H264/H264Demo1/app/src/main/res/menu/main.xml"
+    },
+    {
+        "merged": "/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/res/merged/debug/drawable-hdpi_home.png.flat",
+        "source": "/Users/wangheng/Documents/H264/H264Demo1/app/src/main/res/drawable-hdpi/home.png"
     },
     {
         "merged": "/Users/wangheng/Documents/H264/H264Demo1/app/build/intermediates/res/merged/debug/drawable-mdpi_ic_launcher.png.flat",

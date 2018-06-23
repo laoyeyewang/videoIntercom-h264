@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.1.0'
+    api 'com.android.support:support-v4:19.1.0'
     implementation 'org.kie.modules:com-google-code-gson:6.5.0.Final'
-
+//    implementation 'com.android.support:recyclerview-v7:27.1.1'
 }

@@ -11,6 +11,7 @@ public class UDPSend {
     private String Danyuan;
     private String Fangjian ;
     private String Name;
+    private String Password;
     private String Version;
 
     public String getDeviceType() {
@@ -101,8 +102,11 @@ public class UDPSend {
     }
 
 
+    public String getPassword() { return Password; }
+    public void setPassword(String password) { Password = password; }
+
     @Override
     public String toString() {
-        return "UDPSend [DeviceType=" + DeviceType + ",ID=" + ID + ",IP" + IP + ",MASK=" + MASK + ",GATE="+ GATE + ",DNS=" + DNS + ",Louhao=" + Louhao + ",Danyuan=" + Danyuan + ",Fangjian=" + Fangjian + ",Name=" + Name + ",Version=" + Version + "]";
+        return "UDPSend [DeviceType=" + DeviceType + ",ID=" + ID + ",IP" + IP + ",MASK=" + MASK + ",GATE="+ GATE + ",DNS=" + DNS + ",Louhao=" + Louhao + ",Danyuan=" + Danyuan + ",Fangjian=" + Fangjian + ",Name=" + Name + ",Password=" + Password + ",Version=" + Version + "]";
     }
 }
